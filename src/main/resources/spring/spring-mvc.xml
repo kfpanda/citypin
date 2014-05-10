@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+	
+	<mvc:resources location="/WEB-INF/assets/" mapping="/assets/**"/>
+	<mvc:resources location="/WEB-INF/sound/" mapping="/sound/**"/>
+	<mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
+	
+	<!-- 只扫描@Controller注释的类 -->
+	<context:component-scan base-package="com.kfpanda.park" use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation" />
+	</context:component-scan>
+	
+	<bean id="notNullObjectMapper" class="org.codehaus.jackson.map.ObjectMapper">
+		<property name="serializationInclusion">
+			<value type="org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion">NON_NULL</value>
+		</property>
+	</bean>
+	<bean id="notNullObjectMapper2" class="com.fasterxml.jackson.databind.ObjectMapper">
+		<property name="serializationInclusion">
+			<value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+		</property>
+	</bean>
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+				<property name="objectMapper" ref="notNullObjectMapper2" />
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json;charset=utf-8</value>
+					</list>
+			    </property>
+			</bean>
+			<!-- xml 转化器 如果需要 需要加入相应的jar包 -->
+<!-- 			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"> -->
+<!-- 				<constructor-arg ref="jaxbMarshaller" /> -->
+<!-- 				<property name="supportedMediaTypes" value="application/xml;charset=UTF-8" /> -->
+<!-- 			</bean> -->
+		</mvc:message-converters>
+		<!-- <mvc:argument-resolvers>
+			<bean class="com.hexin.core.page.MultPageableArgumentResolver" />
+		</mvc:argument-resolvers> -->
+	</mvc:annotation-driven>
+
+</beans>

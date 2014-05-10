@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.2.min.css">
+	<script src="./js/jquery.js"></script>
+	<script src="./js/jquery.mobile-1.4.2.min.js"></script>
+	<script src="./js/jquery.json-2.4.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xtmDCOM9wrnZ4OhZKtOPIhsQ"></script>
+	<style type="text/css">
+	body, html,#parkMap {width: 100%;height: 100%;overflow: hidden;margin:0; display:block;}
+	</style>
+	<script type="text/javascript">
+		var fixgeometry = function() {
+		/* Some orientation changes leave the scroll position at something
+		 * that isn't 0,0. This is annoying for user experience. */
+		scroll(0, 0);
+		/* Calculate the geometry that our content area should take */
+		var header = $(".header:visible");
+		var footer = $(".footer:visible");
+		var content = $(".content:visible");
+		var viewport_height = $(window).height();
+		
+		var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+		
+		/* Trim margin/border/padding height */
+		content_height -= (content.outerHeight() - content.height());
+		content.height(content_height);
+	  }; /* fixgeometry */
+	  $(document).ready(function() {
+		$(window).bind("orientationchange resize pageshow", fixgeometry);
+	  });
+	</script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header">head</div>
+	<div role="main">
+		<div id="parkMap" style="min-height:500px; max-height:800px;"></div>
+	</div>
+	<div data-role="footer">foot</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+function startgps(){
+var gps = navigator.geolocation;
+	if (gps){
+		gps.getCurrentPosition(showgps,
+				function(error){
+					alert("Got an error, code: " + error.code + " message: "+ error.message);
+				},
+				{maximumAge: 10000}); // 这里设置超时为10000毫秒，即10秒
+	}else{
+		showgps();
+	}
+}
+function showgps(position){
+	if (position){
+		var latitude = parseFloat(position.coords.latitude.toFixed(8));
+		var longitude = parseFloat(position.coords.longitude.toFixed(8));
+		//alert("latitude: " + latitude + "\r\n longitude: "+ longitude);
+		// 百度地图API功能
+		var map = new BMap.Map("parkMap");            // 创建Map实例
+		var point = new BMap.Point(longitude, latitude);    // 创建点坐标
+		map.centerAndZoom(point,15);                     // 初始化地图,设置中心点坐标和地图级别。
+		map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+
+
+		var pinIcon = new BMap.Icon('./images/pin.png', new BMap.Size(20, 32), {
+			anchor: new BMap.Size(10, 30)
+		});
+		var parkIcon = new BMap.Icon('./images/park.png', new BMap.Size(30, 30), {
+			anchor: new BMap.Size(10, 30)
+		});
+		var pinMrk = new BMap.Marker(new BMap.Point(longitude, latitude), {
+			icon: pinIcon
+		});
+		map.addOverlay(pinMrk);
+
+		$.ajax({ //一个Ajax过程 
+			//type: "post", //以post方式与后台沟通 
+			url : "/park/park/find", //与此php页面沟通 
+			dataType:'json',//从php返回的值以 JSON方式 解释 
+			data: 'latx0=' + (latitude - 0.01) + '&latx1=' + (latitude + 0.01)
+					+ '&lngy0=' + (longitude - 0.01) + '&lngy1=' + (longitude + 0.01), //发给php的数据有两项，分别是上面传来的u和p 
+			success: function(data){//如果调用php成功
+				if(data.result.data.length > 0){
+					parkData = data.result.data;
+					for( idx in parkData ){
+						var parkInfo = parkData[idx];
+						var parkMrk = new BMap.Marker(new BMap.Point(parkInfo.lng, parkInfo.lat), {
+							icon: parkIcon
+						});
+						map.addOverlay(parkMrk);
+					}
+				}
+			},
+			timeout: 5000
+		});
+
+	}else{
+		alert("position is null");
+	}
+}
+
+startgps();
+</script>
