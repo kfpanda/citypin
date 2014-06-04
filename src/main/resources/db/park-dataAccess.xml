@@ -63,22 +63,7 @@
 	<bean id="parkNameJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg name="dataSource" ref="parkDataSource" />
 	</bean>
-
-	<!-- <bean id="infoSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:mybatis/mybatis-info-config.xml"/>
-		<property name="mapperLocations" value="classpath*:mybatis/mapper/**/*.xml"/>
-		<property name="dataSource" ref="infoDataSource" />
-	</bean>
-
-	<bean id="infoMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
-		<property name="basePackage" value="com.hexin.info.mapper" />
-		<property name="sqlSessionFactoryBeanName" value="infoSqlSessionFactory" />
-	</bean> -->
-
-	<!-- <bean id="infoTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="infoDataSource" />
-	</bean>
-
+	
 	<tx:annotation-driven mode="aspectj" transaction-manager="infoTransactionManager" /> -->
 
 </beans>

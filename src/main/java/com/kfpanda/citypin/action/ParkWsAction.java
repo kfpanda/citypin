@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.kfpanda.citypin.bean.ParkInfo;
 import com.kfpanda.citypin.biz.ParkBiz;
 
@@ -20,23 +19,23 @@ import com.kfpanda.citypin.biz.ParkBiz;
 @RequestMapping("/park")
 public class ParkWsAction extends BaseAction{
 	private final Logger logger = Logger.getLogger(ParkWsAction.class);
+	
 	@Resource(name="parkBizImpl")
 	private ParkBiz parkBiz;
 	
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public @ResponseBody Object parkFind(
-            @RequestParam(value = "latx0") Double latX0,
-            @RequestParam(value = "latx1") Double latX1,
-            @RequestParam(value = "lngy0") Double lngY0,
-            @RequestParam(value = "lngy1") Double lngY1,
-            @RequestParam(value = "callback", required=false) String callback) {
+            @RequestParam(value = "lat0") Double lat0,
+            @RequestParam(value = "lat1") Double lat1,
+            @RequestParam(value = "lng0") Double lng0,
+            @RequestParam(value = "lng1") Double lng1) {
 		
-		List<ParkInfo> parks = this.parkBiz.findParkInfos(latX0, latX1, lngY0, lngY1);
-		if(StringUtils.isBlank(callback)){
+		List<ParkInfo> parks = this.parkBiz.findParkInfos(lat0, lat1, lng0, lng1);
+//		if(StringUtils.isBlank(callback)){
 			return this.getResult(parks);
-		}else{
-			return new JSONPObject(callback, this.getResult(parks));
-		}
+//		}else{
+//			return new JSONPObject(callback, this.getResult(parks));
+//		}
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
