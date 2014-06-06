@@ -10,16 +10,16 @@
 	<mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
 	
 	<!-- 只扫描@Controller注释的类 -->
-	<context:component-scan base-package="com.kfpanda.park" use-default-filters="false">
+	<context:component-scan base-package="com.kfpanda.citypin" use-default-filters="false">
 		<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation" />
 	</context:component-scan>
 	
-	<bean id="notNullObjectMapper" class="org.codehaus.jackson.map.ObjectMapper">
+	<!-- <bean id="notNullObjectMapper" class="org.codehaus.jackson.map.ObjectMapper">
 		<property name="serializationInclusion">
 			<value type="org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion">NON_NULL</value>
 		</property>
-	</bean>
-	<bean id="notNullObjectMapper2" class="com.fasterxml.jackson.databind.ObjectMapper">
+	</bean> -->
+	<bean id="notNullObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
 		<property name="serializationInclusion">
 			<value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
 		</property>
@@ -27,7 +27,7 @@
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
-				<property name="objectMapper" ref="notNullObjectMapper2" />
+				<property name="objectMapper" ref="notNullObjectMapper" />
 				<property name="supportedMediaTypes">
 					<list>
 						<value>text/html;charset=UTF-8</value>

@@ -64,6 +64,6 @@
 		<constructor-arg name="dataSource" ref="parkDataSource" />
 	</bean>
 	
-	<tx:annotation-driven mode="aspectj" transaction-manager="infoTransactionManager" /> -->
+	<!-- <tx:annotation-driven mode="aspectj" transaction-manager="infoTransactionManager" /> -->
 
 </beans>

@@ -7,12 +7,18 @@
 	
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="parkDataSource" />
-		<property name="mapperLocations" value="classpath*:com/kfpanda/citypin/mapper/**/*.xml" />
+		<!-- <property name="mapperLocations" value="classpath*:com/kfpanda/citypin/mapper/**/*.xml" /> -->
 	</bean>
 	
 	<!-- 注册Mapper方式二：也可不指定特定mapper，而使用自动扫描包的方式来注册各种Mapper ，配置如下：-->  
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
-	    <property name="basePackage" value="com.kfpanda.citypin.mapper" />  
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <property name="basePackage" value="com.kfpanda.citypin.mapper" />
+	    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
+	
+	<!-- <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+      <property name="mapperInterface" value="com.xxt.ibatis.dbcp.dao.UserMapper" />
+      <property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+	</bean> -->
 
 </beans>

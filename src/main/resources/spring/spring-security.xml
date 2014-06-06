@@ -45,26 +45,26 @@
  <!-- 用户详细信息管理 : 数据源、用户缓存、启用用户组功能。  -->
  <b:bean id="userDetailsManager"
   class="org.springframework.security.provisioning.JdbcUserDetailsManager">
-  <property name="dataSource" ref="parkDataSource" />
-  <property name="userCache" ref="userCache" />
-  <property name="enableGroups" value="false"/>  
-  <property name="enableAuthorities" value="false"/>  
-  <property name="usersByUsernameQuery">
-    <value>SELECT account, passwd,
+  <b:property name="dataSource" ref="parkDataSource" />
+  <b:property name="userCache" ref="userCache" />
+  <b:property name="enableGroups" value="false"/>  
+  <b:property name="enableAuthorities" value="false"/>  
+  <b:property name="usersByUsernameQuery">
+    <b:value>SELECT account, passwd,
            status FROM users WHERE account=? 
-    </value>
-  </property>
+    </b:value>
+  </b:property>
  </b:bean>
  
  <b:bean id="userCache"
   class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
-  <property name="cache" ref="userEhCache" />
+  <b:property name="cache" ref="userEhCache" />
  </b:bean> 
  
  
  <b:bean id="userEhCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
-	<property name="cacheName" value="userCache" />
-	<property name="cacheManager" ref="cacheManager" />
+	<b:property name="cacheName" value="userCache" />
+	<b:property name="cacheManager" ref="cacheManager" />
  </b:bean>
  
  <!-- 缓存用户管理 -->
@@ -74,7 +74,7 @@
 
  <!-- spring security自带的与权限有关的数据读写Jdbc模板 -->
  <b:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-	<property name="dataSource" ref="parkDataSource" />
+	<b:property name="dataSource" ref="parkDataSource" />
  </b:bean>
  
 </b:beans>

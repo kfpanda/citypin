@@ -15,7 +15,7 @@ create table park_info(
     price double,
     belong varchar(100),
     ispub int not null default 0, /*1代表发布，0代表不发布*/
-    primary key(pid)
+    primary key(pno)
 );
 create unique index pi_pno_idx on park_info(pno);
 create unique index pi_recid_devid_idx on park_info(recid, devid);
@@ -35,7 +35,7 @@ create table users(
     level int not null default 1,
     levscore int not null default 0,
     score int not null default 0, /*1代表发布，0代表不发布*/
-    status NUMBER(1) not null default 0,
+    status int(1) not null default 0,
     address varchar(100),
     vehtype varchar(30),
     remark varchar(1000),
@@ -78,9 +78,9 @@ create table message(
     createtime DECIMAL(13,0),
     updatetime DECIMAL(13,0),
     title varchar(100) not null,
-    from  varchar(30) not null,
+    frm  varchar(30) not null,
     intro  varchar(200),
-    content varchar(3000) not null
+    content varchar(3000) not null,
     primary key(mid)
 );
 create unique index msg_mid_idx on message(mid);
