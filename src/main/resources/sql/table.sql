@@ -16,7 +16,7 @@ create table park_info(
     belong varchar(100),
     ispub int not null default 0, /*1代表发布，0代表不发布*/
     primary key(pno)
-);
+);;
 create unique index pi_pno_idx on park_info(pno);
 create unique index pi_recid_devid_idx on park_info(recid, devid);
 create index pi_lat_lng_idx on park_info(lat, lng);
@@ -40,16 +40,24 @@ create table users(
     vehtype varchar(30),
     remark varchar(1000),
     primary key(account)
-);
+);;
 create unique index ui_account_idx on users(account);
 
 drop table role;
 /*角色信息表*/
 create table role(
+    name varchar(32) not null,
+    role varchar(32) not null
+);;
+create unique index r_role_idx on role(role);
+
+drop table user_role;
+/*角色信息表*/
+create table user_role(
     account varchar(32) not null,
     role varchar(32) not null
-);
-create unique index ui_account_role_idx on role(account, role);
+);;
+create unique index ur_account_role_idx on user_role(account, role);
 
 
 drop table order_info;
@@ -65,7 +73,7 @@ create table order_info(
     price double not null,
     cost double not null,
     primary key(ono)
-);
+);;
 create unique index oi_ono_idx on order_info(ono);
 create index oi_account_pno_idx on order_info(account, pno);
 create index oi_account_idx on order_info(account);
@@ -82,6 +90,6 @@ create table message(
     intro  varchar(200),
     content varchar(3000) not null,
     primary key(mid)
-);
+);;
 create unique index msg_mid_idx on message(mid);
 
