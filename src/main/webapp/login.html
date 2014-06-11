@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>citypin interface</title>
+<title>citypin login</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 <script type="text/javascript">
@@ -17,9 +17,14 @@
 }
 </style>
 <body>
-<div>
-	
-intro	
+
+<div style="margin:100px 0 0 200px;">
+	<form method="post" action="/citypin/rs/user/login">
+		用户名：<input type="text" name="j_username" /><br />
+		密码：<input type="password" name="j_password" /><br />
+		<input type="submit" value="登入" />
+	</form>
 </div>
+
 </body>
 </html>

@@ -8,6 +8,8 @@
 	<mvc:resources location="/WEB-INF/assets/" mapping="/assets/**"/>
 	<mvc:resources location="/WEB-INF/sound/" mapping="/sound/**"/>
 	<mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
+	<mvc:resources location="/html/**" mapping="/html/**"/>
+	<mvc:resources location="/login.html" mapping="/login.html"/>
 	
 	<!-- 只扫描@Controller注释的类 -->
 	<context:component-scan base-package="com.kfpanda.citypin" use-default-filters="false">

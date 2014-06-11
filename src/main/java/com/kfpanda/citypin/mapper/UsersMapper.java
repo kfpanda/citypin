@@ -1,22 +1,30 @@
 package com.kfpanda.citypin.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
+import java.util.List;
 
-import com.kfpanda.citypin.bean.UserRole;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+import com.kfpanda.citypin.bean.Role;
 import com.kfpanda.citypin.bean.Users;
 
+@Repository
 public interface UsersMapper {
 	
 	@Insert("INSERT INTO users(account,passwd,phone, nkname) VALUES(#{account},#{passwd},#{phone},#{nkName})")
 	public int saveUser(Users user);
-	@Insert("INSERT INTO user_role(account, role) VALUES(#{account}, #{role})")
-	public int saveUserRole(UserRole userRole);
+	
+	@Insert("INSERT INTO user_role(account, rid) VALUES(#{account}, #{rid})")
+	public int saveUserRole(@Param("account")String account, @Param("rid")Long roleId);
 	
 	@Select("SELECT * FROM users WHERE account = #{account}")
 	public Users findUser(String account);
 	
-	@Select("SELECT u.*, ur.role FROM users u left join user_role ur on u.account=ur.account WHERE u.account = #{account}")
-	public UserRole findUserRole(String account);
+	@Select("SELECT r.* FROM users u left join user_role ur on u.account=ur.account left join role r on ur.rid=r.rid WHERE u.account = #{account}")
+	public List<Role> findRoles(String account);
+	
+	public int updateUser(String account, String passwd);
 	//INSERT INTO users(account,passwd,phone, nkname) VALUES('lhl','asdf', '123432425', 'lhlnk');
 }

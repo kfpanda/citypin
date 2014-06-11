@@ -21,7 +21,17 @@
 		<!-- 在装载spring mvc 时会加载这些Controller 因此在这边排除加载 如果不排除会造成事务失效 -->
 		<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation" />
 	</context:component-scan>
+	
+	<context:component-scan base-package="com.util.security">
+		<!-- 在编译时就会织入声明为切面的类 因此服务器启动时要排除 -->
+		<context:exclude-filter expression=".*_Aspect.*" type="regex" />
+		<!-- 在装载spring mvc 时会加载这些Controller 因此在这边排除加载 如果不排除会造成事务失效 -->
+		<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation" />
+	</context:component-scan>
 
 	<!-- <import resource="classpath*:db/ocrm-dataAccess.xml" /> -->
 	<import resource="classpath*:spring/spring-dao.xml" />
+	<import resource="classpath*:spring/spring-mybatis.xml" />
+	<import resource="classpath*:spring/spring-security.xml" />
+	
 </beans>

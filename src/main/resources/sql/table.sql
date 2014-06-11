@@ -1,4 +1,4 @@
-drop table park_info;
+drop table if exists park_info;
 /*车位信息表*/
 create table park_info(
     pno bigint AUTO_INCREMENT,
@@ -22,7 +22,7 @@ create unique index pi_recid_devid_idx on park_info(recid, devid);
 create index pi_lat_lng_idx on park_info(lat, lng);
 
 
-drop table users;
+drop table if exists users;
 /*用户信息表*/
 create table users(
     account varchar(32) not null,
@@ -43,24 +43,46 @@ create table users(
 );;
 create unique index ui_account_idx on users(account);
 
-drop table role;
+drop table if exists role;
 /*角色信息表*/
 create table role(
+	rid bigint AUTO_INCREMENT,
     name varchar(32) not null,
-    role varchar(32) not null
+    role varchar(32) not null,
+    primary key(rid)
 );;
 create unique index r_role_idx on role(role);
 
-drop table user_role;
+drop table if exists user_role;
 /*角色信息表*/
 create table user_role(
     account varchar(32) not null,
-    role varchar(32) not null
+    rid bigint not null
 );;
-create unique index ur_account_role_idx on user_role(account, role);
+create unique index ur_account_rid_idx on user_role(account, rid);
+
+drop table if exists resource;
+/*角色信息表*/
+create table resource(
+    rno bigint AUTO_INCREMENT,
+    name varchar(32) not null,
+    pid bigint,
+    status DECIMAL(1,0) not null default 1,
+    type DECIMAL(1,0) not null default 1,
+    url varchar(200),
+    primary key(rno)
+);;
+create unique index rs_rno_idx on resource(rno);
+
+drop table if exists role_res;
+create table role_res(
+    rid bigint not null,
+    rno bigint not null
+);;
+create unique index rr_rid_rno_idx on role_res(rid, rno);
 
 
-drop table order_info;
+drop table if exists order_info;
 /*订单信息表*/
 create table order_info(
     ono bigint AUTO_INCREMENT,
@@ -79,7 +101,7 @@ create index oi_account_pno_idx on order_info(account, pno);
 create index oi_account_idx on order_info(account);
 
 
-drop table message;
+drop table if exists message;
 /*消息表*/
 create table message(
     mid bigint AUTO_INCREMENT,
