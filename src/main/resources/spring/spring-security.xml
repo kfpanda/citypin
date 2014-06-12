@@ -10,23 +10,27 @@
 	<http pattern="/image/**" security="none" />
 	<!-- <http pattern="/html/**" security="none" /> -->
 	<http pattern="/login.html" security="none"/>
+	<http pattern="/rs/user/register" security="none"/>
 	
 	<http auto-config="true" access-denied-page="/login.html">
 	
-	  <!-- 下面是对Action配置。表示具有访问/unitsManager资源的用户必须具有ROLE_PLATFORMADMIN的权限。
+		<!-- 下面是对Action配置。表示具有访问/unitsManager资源的用户必须具有ROLE_PLATFORMADMIN的权限。
 	                     当用户登录时，SS3将用户的所有权限从数据库中提取出来，形成列表。 当用户访问该资源时，SS3将
 	                     登录用户的权限列表提出来跟下面配置的权限进行比对，若有，则允许访问，若没有，则给出AccessDeniedException。-->
-	 <!-- <intercept-url pattern="/usersManager"  access="ROLE_PLATFORMADMIN" />
-	 <intercept-url pattern="/**"   access="ROLE_USER" /> -->
-	 <anonymous enabled="true"/>
-	 <form-login login-page="/login.html" authentication-failure-url="/login.html?error=true" 
-	 			default-target-url="/html/intro.html" login-processing-url="/rs/user/login"/>
-	
-	 <!-- "记住我"功能，采用持久化策略（将用户的登录信息存放在数据库表中） -->
-	 <!-- <remember-me data-source-ref="dataSource" /> -->
-	 <!-- 检测失效的sessionId,超时时定位到另外一个URL -->
-	 <session-management invalid-session-url="/sessionTimeout.jsp" />
-	 <custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="secFilter"/>
+		<!-- <intercept-url pattern="/usersManager"  access="ROLE_PLATFORMADMIN" />
+		<intercept-url pattern="/**"   access="ROLE_USER" /> -->
+		<anonymous enabled="true"/>
+		<form-login login-page="/login.html" authentication-failure-url="/login.html?error=true"
+	 		username-parameter="account" password-parameter="passwd"  
+	 		default-target-url="/html/intro.html" login-processing-url="/rs/user/login"/>
+		<logout invalidate-session="true"
+			logout-success-url="/login.html"
+			logout-url="/rs/user/logout"/>
+		<!-- "记住我"功能，采用持久化策略（将用户的登录信息存放在数据库表中） -->
+		<!-- <remember-me data-source-ref="dataSource" /> -->
+		<!-- 检测失效的sessionId,超时时定位到另外一个URL -->
+		<session-management invalid-session-url="/sessionTimeout.jsp" />
+		<custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="secFilter"/>
 	</http>
 	
 	<!-- 注意能够为authentication-manager 设置alias别名  -->

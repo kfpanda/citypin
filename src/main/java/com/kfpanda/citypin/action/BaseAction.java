@@ -1,33 +1,49 @@
 package com.kfpanda.citypin.action;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseAction {
-	
-	protected Map<String, Object> getResult(Object data){
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("data", data);
-		return this.getResult(dataMap, "OK");
+    
+    protected ResultDTO getResult(){
+        return this.getResult(1, null, null);
+    }
+    
+    protected ResultDTO getResult(int result){
+        return this.getResult(result, null, null);
+    }
+    
+	protected ResultDTO getResult(Object data){
+		return this.getResult(data, null);
 	}
 	
-	protected Map<String, Object> getResult(Object data, String msg){
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("data", data);
-		resultMap.put("result", dataMap);
-		resultMap.put("msg", msg);
-		return resultMap;
+	protected ResultDTO getResult(Object data, String msg){
+		return this.getResult(1, data, msg);
 	}
 	
-	protected Map<String, Object> getResult(Map<String, Object> dataMap){
-		return this.getResult(dataMap, "OK");
+	protected ResultDTO getResult(int result, String msg){
+        return this.getResult(result, null, msg);
+    }
+	
+	protected ResultDTO getResult(int result, Object data, String msg){
+		return new ResultDTO(result, data, msg);
 	}
 	
-	protected Map<String, Object> getResult(Map<String, Object> dataMap, String msg){
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("result", dataMap);
-		resultMap.put("msg", msg);
-		return resultMap;
-	}
+	protected ResultDTO getResult(Object data, int totalPage, long totalElem){
+        return this.getResult(1, data, null, totalPage, totalElem);
+    }
+	
+	protected ResultDTO getResult(int result, Object data, String msg, int totalPage, long totalElem){
+	    Page page = new Page(totalPage, totalElem);
+        return new ResultDTO(result, data, msg, page);
+    }
+	
+	//灏哠tring[] 杞崲鎴� List
+    public List<String> newList(String[] objList){
+        List<String> list = new ArrayList<String>();
+        for(String obj : objList){
+            list.add(obj);
+        }
+        return list;
+    }
 }
