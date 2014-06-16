@@ -100,7 +100,6 @@ create unique index oi_ono_idx on order_info(ono);
 create index oi_account_pno_idx on order_info(account, pno);
 create index oi_account_idx on order_info(account);
 
-
 drop table if exists message;
 /*消息表*/
 create table message(
@@ -115,3 +114,10 @@ create table message(
 );;
 create unique index msg_mid_idx on message(mid);
 
+drop table if exists user_msg;
+/*消息表*/
+create table user_msg(
+    mid bigint not null,
+    account varchar(32) not null
+);;
+create unique index um_mid_account_idx on user_msg(mid, account);

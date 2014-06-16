@@ -30,7 +30,7 @@ public class ParkInfoDaoTest extends AbstractTestNGSpringContextTests{
 		paramDto.setIsPub(1);
 		paramDto.setLat(134.6543);
 		paramDto.setLng(164.2345);
-		paramDto.setPName("pname1");
+		paramDto.setpName("pname1");
 		paramDto.setRecId("#001");
 		paramDto.setDevId("06");
 		parkInfoDao.saveParkInfo(paramDto);
@@ -39,14 +39,14 @@ public class ParkInfoDaoTest extends AbstractTestNGSpringContextTests{
 	@Test
 	public void upsert(){
 		ParkInfo paramDto = new ParkInfo();
-		paramDto.setPid(new Long(2));
+		paramDto.setPno(new Long(2));
 		paramDto.setAddress("address");
 		paramDto.setCreateTime(System.currentTimeMillis());
 		paramDto.setUpdateTime(System.currentTimeMillis());
 		paramDto.setIsPub(1);
 		paramDto.setLat(30.2949084);
 		paramDto.setLng(120.1086648);
-		paramDto.setPName("pname1");
+		paramDto.setpName("pname1");
 		paramDto.setRecId("#001");
 		paramDto.setDevId("06");
 		parkInfoDao.upsert(paramDto);

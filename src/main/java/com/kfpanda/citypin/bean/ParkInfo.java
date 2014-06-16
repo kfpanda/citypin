@@ -2,7 +2,7 @@ package com.kfpanda.citypin.bean;
 
 public class ParkInfo {
 	
-	private Long pid;
+	private Long pno;
 	private Long createTime;
 	private Long updateTime;
 	private String pName;
@@ -11,13 +11,17 @@ public class ParkInfo {
 	private String address;
 	private Double lat;
 	private Double lng;
+	private Double len;
+	private Double wid;
+	private Double price;
+	private String belong;
 	private Integer isPub;
 	
-	public Long getPid() {
-		return pid;
+	public Long getPno() {
+		return pno;
 	}
-	public void setPid(Long pid) {
-		this.pid = pid;
+	public void setPno(Long pno) {
+		this.pno = pno;
 	}
 	public Long getCreateTime() {
 		return createTime;
@@ -31,10 +35,10 @@ public class ParkInfo {
 	public void setUpdateTime(Long updateTime) {
 		this.updateTime = updateTime;
 	}
-	public String getPName() {
+	public String getpName() {
 		return pName;
 	}
-	public void setPName(String pName) {
+	public void setpName(String pName) {
 		this.pName = pName;
 	}
 	public String getRecId() {
@@ -67,12 +71,34 @@ public class ParkInfo {
 	public void setLng(Double lng) {
 		this.lng = lng;
 	}
+	public Double getLen() {
+		return len;
+	}
+	public void setLen(Double len) {
+		this.len = len;
+	}
+	public Double getWid() {
+		return wid;
+	}
+	public void setWid(Double wid) {
+		this.wid = wid;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public String getBelong() {
+		return belong;
+	}
+	public void setBelong(String belong) {
+		this.belong = belong;
+	}
 	public Integer getIsPub() {
 		return isPub;
 	}
 	public void setIsPub(Integer isPub) {
 		this.isPub = isPub;
 	}
-	
-	
 }

@@ -17,8 +17,8 @@
 		<!-- 下面是对Action配置。表示具有访问/unitsManager资源的用户必须具有ROLE_PLATFORMADMIN的权限。
 	                     当用户登录时，SS3将用户的所有权限从数据库中提取出来，形成列表。 当用户访问该资源时，SS3将
 	                     登录用户的权限列表提出来跟下面配置的权限进行比对，若有，则允许访问，若没有，则给出AccessDeniedException。-->
-		<!-- <intercept-url pattern="/usersManager"  access="ROLE_PLATFORMADMIN" />
-		<intercept-url pattern="/**"   access="ROLE_USER" /> -->
+		<!-- <intercept-url pattern="/usersManager"  access="ROLE_PLATFORMADMIN" /> -->
+		<intercept-url pattern="/**" access="ROLE_USER" />
 		<anonymous enabled="true"/>
 		<form-login login-page="/login.html" authentication-failure-url="/login.html?error=true"
 	 		username-parameter="account" password-parameter="passwd"  

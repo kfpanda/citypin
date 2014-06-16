@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kfpanda.citypin.bean.OrderInfo;
 import com.kfpanda.citypin.bean.ParkInfo;
 import com.kfpanda.citypin.biz.ParkBiz;
 
@@ -22,7 +24,7 @@ public class ParkWsAction extends BaseAction{
 	@Resource(name="parkBizImpl")
 	private ParkBiz parkBiz;
 	
-	@RequestMapping(value = "/find", method = RequestMethod.GET)
+	@RequestMapping(value = "/search/round", method = RequestMethod.POST)
 	public @ResponseBody Object parkFind(
             @RequestParam(value = "lat0") Double lat0,
             @RequestParam(value = "lat1") Double lat1,
@@ -38,7 +40,7 @@ public class ParkWsAction extends BaseAction{
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody Object parkFind(@RequestParam(value = "lat") Double lat,
+	public @ResponseBody Object parkUpdate(@RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lng") Double lng,
             @RequestParam(value = "pname") String pName,
             @RequestParam(value = "recid") String recId,
@@ -49,55 +51,53 @@ public class ParkWsAction extends BaseAction{
 		parkInfo.setAddress(address);
 		parkInfo.setLat(lat);
 		parkInfo.setLng(lng);
-		parkInfo.setPName(pName);
+		parkInfo.setpName(pName);
 		parkInfo.setRecId(recId);
 		parkInfo.setDevId(devId);
 		this.parkBiz.upsertParkInfo(parkInfo);
 		return this.getResult(null);
 	}
 	
-	/*@Resource(name="secretBizImpl")
-	private SecretBiz secretBiz;
-	
-	@RequestMapping(value = "/svr", method = RequestMethod.GET)
-	public void checkAuth(@RequestParam(value = "signature") String signature,
-            @RequestParam(value = "timestamp") String timestamp,
-            @RequestParam(value = "nonce") String nonce,
-            @RequestParam(value = "echostr") String echostr, HttpServletResponse response) {
-		boolean authPass = secretBiz.checkSignature(signature, timestamp, nonce);
-		if(authPass){
-			//权限验证通过
-			try {
-				response.getWriter().write(echostr);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	@RequestMapping(value = "/pay", method = RequestMethod.POST)
+	public @ResponseBody Object parkPay(@RequestParam(value = "account") String account,
+            @RequestParam(value = "pno") Long pno,
+            @RequestParam(value = "stime") Long sTime,
+            @RequestParam(value = "etime") Long eTime,
+            @RequestParam(value = "price") Double price,
+            @RequestParam(value = "cost") Double cost) {
+		
+		if(StringUtils.isBlank(account)){
+			return this.getResult(-1, "account isn't null or empty.");
 		}
+		if(pno == null || pno < 0){
+			return this.getResult(-1, "pno isn't null or empty.");
+		}
+		if(sTime == null || sTime < 1){
+			return this.getResult(-1, "stime isn't null or empty.");
+		}
+		if(eTime == null || eTime < 1){
+			return this.getResult(-1, "etime isn't null or empty.");
+		}
+		if(price == null || price < 0){
+			return this.getResult(-1, "price isn't null or empty.");
+		}
+		if(cost == null || cost < 0){
+			return this.getResult(-1, "cost isn't null or empty.");
+		}
+		OrderInfo order = new OrderInfo();
+		order.setAccount(account);
+		order.setPno(pno);
+		order.setCreateTime(System.currentTimeMillis());
+		order.setUpdateTime(System.currentTimeMillis());
+		order.setStime(sTime);
+		order.setEtime(eTime);
+		order.setPrice(price);
+		order.setCost(cost);
+		int rlt = this.parkBiz.parkPay(order);
+		if(rlt == 1){
+			return this.getResult();
+		}
+		return this.getResult(-1);
 	}
 	
-	@RequestMapping(value = "/svr", method = RequestMethod.POST)
-    public void answerQuestion(HttpServletRequest request, HttpServletResponse response) {
-		
-		//解析消息参数 到实体对象
-		MsgParam msgParam = null;
-		try {
-			msgParam = (MsgParam)JAXBUtils.unmarshal( 
-					request.getInputStream(), MsgParam.class);
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//test
-		JAXBUtils.marshal(msgParam, System.out);
-		
-		Object msgResult = secretBiz.replyMsg(msgParam);
-		
-		JAXBUtils.marshal(msgResult, System.out);
-		try {
-			JAXBUtils.marshal(msgResult, response.getOutputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }*/
 }

@@ -1,30 +1,30 @@
 package com.kfpanda.citypin.bean;
 
 public class Message {
-	private long mid;
-	private long createTime;
-	private long updateTime;
+	private Long mid;
+	private Long createTime;
+	private Long updateTime;
 	private String title;
 	private String frm;
 	private String intro;
 	private String content;
 	
-	public long getMid() {
+	public Long getMid() {
 		return mid;
 	}
-	public void setMid(long mid) {
+	public void setMid(Long mid) {
 		this.mid = mid;
 	}
-	public long getCreateTime() {
+	public Long getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(long createTime) {
+	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
 	}
-	public long getUpdateTime() {
+	public Long getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(long updateTime) {
+	public void setUpdateTime(Long updateTime) {
 		this.updateTime = updateTime;
 	}
 	public String getTitle() {
@@ -51,4 +51,5 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 }

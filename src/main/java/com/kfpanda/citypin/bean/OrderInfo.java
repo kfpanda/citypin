@@ -1,31 +1,32 @@
 package com.kfpanda.citypin.bean;
 
 public class OrderInfo {
-	private long ono;
-	private long createTime;
-	private long updateTime;
+	private Long ono;
+	private Long createTime;
+	private Long updateTime;
 	private String account;
-	private long pno;
-	private long stime;
-	private long etime;
-	private double price;
-	private double cost;
-	public long getOno() {
+	private Long pno;
+	private Long stime;
+	private Long etime;
+	private Double price;
+	private Double cost;
+	
+	public Long getOno() {
 		return ono;
 	}
-	public void setOno(long ono) {
+	public void setOno(Long ono) {
 		this.ono = ono;
 	}
-	public long getCreateTime() {
+	public Long getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(long createTime) {
+	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
 	}
-	public long getUpdateTime() {
+	public Long getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(long updateTime) {
+	public void setUpdateTime(Long updateTime) {
 		this.updateTime = updateTime;
 	}
 	public String getAccount() {
@@ -34,34 +35,35 @@ public class OrderInfo {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public long getPno() {
+	public Long getPno() {
 		return pno;
 	}
-	public void setPno(long pno) {
+	public void setPno(Long pno) {
 		this.pno = pno;
 	}
-	public long getStime() {
+	public Long getStime() {
 		return stime;
 	}
-	public void setStime(long stime) {
+	public void setStime(Long stime) {
 		this.stime = stime;
 	}
-	public long getEtime() {
+	public Long getEtime() {
 		return etime;
 	}
-	public void setEtime(long etime) {
+	public void setEtime(Long etime) {
 		this.etime = etime;
 	}
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
-	public double getCost() {
+	public Double getCost() {
 		return cost;
 	}
-	public void setCost(double cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
+	
 }

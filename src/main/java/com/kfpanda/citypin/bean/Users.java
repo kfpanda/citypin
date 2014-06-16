@@ -6,16 +6,16 @@ public class Users implements Serializable{
 	private static final long serialVersionUID = 2329606062982948244L;
 	
 	private String account;
-    private long createTime;
-    private long updateTime;
+    private Long createTime;
+    private Long updateTime;
     private String passwd;
     private String phone;
     private String nkName;
     private String uName;
-    private int level;
-    private int levScore;
-    private int score;
-    private int status;
+    private Integer level;
+    private Integer levScore;
+    private Integer score;
+    private Integer status;
     private String address;
     private String vehType;
     private String remark;
@@ -26,16 +26,16 @@ public class Users implements Serializable{
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public long getCreateTime() {
+	public Long getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(long createTime) {
+	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
 	}
-	public long getUpdateTime() {
+	public Long getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(long updateTime) {
+	public void setUpdateTime(Long updateTime) {
 		this.updateTime = updateTime;
 	}
 	public String getPasswd() {
@@ -62,28 +62,28 @@ public class Users implements Serializable{
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
-	public int getLevScore() {
+	public Integer getLevScore() {
 		return levScore;
 	}
-	public void setLevScore(int levScore) {
+	public void setLevScore(Integer levScore) {
 		this.levScore = levScore;
 	}
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 	public String getAddress() {
@@ -104,5 +104,4 @@ public class Users implements Serializable{
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-    
 }

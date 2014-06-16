@@ -22,7 +22,7 @@ public class UserWsAction extends BaseAction{
 	private UserBiz userBiz;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public @ResponseBody Object parkFind(
+	public @ResponseBody Object register(
             @RequestParam(value = "account") String account,
             @RequestParam(value = "passwd") String passwd,
             @RequestParam(value = "phone") String phone,
@@ -43,7 +43,7 @@ public class UserWsAction extends BaseAction{
 			return this.getResult(-1, "phone isn't null or empty or len != 11.");
 		}
 		if(StringUtils.isBlank(passwd) || passwd.length() < 8){
-			return this.getResult(-1, "account isn't null or empty or len < 8.");
+			return this.getResult(-1, "password isn't null or empty or len < 8.");
 		}
 		if(StringUtils.isBlank(nkName)){
 			nkName = account;
@@ -67,7 +67,7 @@ public class UserWsAction extends BaseAction{
 		return this.getResult(userBiz.saveUser(user));
 	}
 	
-	@RequestMapping(value = "/info/${account}", method = RequestMethod.POST)
+	@RequestMapping(value = "/info/{account}")
 	public @ResponseBody Object parkFind(
             @PathVariable(value = "account") String account) {
 		

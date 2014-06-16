@@ -27,7 +27,7 @@ public class UsersMapperTest {
 	@Test
 	public void saveUser(){
 		Users usr = new Users();
-		usr.setAccount("lhl");
+		usr.setAccount("lhl1");
 		usr.setPasswd(encoder.encodePassword("123456", "lhl"));
 		usr.setPhone("12345678912");
 		usr.setNkName("kfpanda");

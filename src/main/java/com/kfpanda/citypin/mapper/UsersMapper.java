@@ -13,7 +13,8 @@ import com.kfpanda.citypin.bean.Users;
 @Repository
 public interface UsersMapper {
 	
-	@Insert("INSERT INTO users(account,passwd,phone, nkname) VALUES(#{account},#{passwd},#{phone},#{nkName})")
+	@Insert("INSERT INTO users(account,passwd,phone, nkname, createtime, updatetime, uname, level, levscore, score, status, address, vehtype, remark)" 
+			+ " VALUES(#{account},#{passwd},#{phone},#{nkName},#{createTime},#{updateTime},#{uName},#{level},#{levScore},#{score},#{status},#{address},#{vehType},#{remark})")
 	public int saveUser(Users user);
 	
 	@Insert("INSERT INTO user_role(account, rid) VALUES(#{account}, #{rid})")
