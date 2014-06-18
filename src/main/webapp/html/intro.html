@@ -59,10 +59,10 @@
 	<div><h2>2车位服务相关接口</h2></div>
 	<div><h3>2.1附近车位查询接口（POST请求）</h3></div>
 	<form action="/citypin/rs/park/search/round" method="post">
-		<span class="field_span">lat0:</span><input type="text" name="lat0" value="130.0"/>
-		<span class="field_span">lat1:</span><input type="text" name="lat1" value="140.0"/><br />
-		<span class="field_span">lng0:</span><input type="text" name="lng0" value="160.0"/>
-		<span class="field_span">lng1:</span><input type="text" name="lng1" value="170.0"/><br />
+		<span class="field_span">lat0:</span><input type="text" name="lat0" value="30.0"/>
+		<span class="field_span">lat1:</span><input type="text" name="lat1" value="31.0"/><br />
+		<span class="field_span">lng0:</span><input type="text" name="lng0" value="120.0"/>
+		<span class="field_span">lng1:</span><input type="text" name="lng1" value="121.0"/><br />
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
@@ -74,6 +74,22 @@
 		<span class="field_span">etime:</span><input type="text" name="etime" value="1402911760397"/><br />
 		<span class="field_span">price:</span><input type="text" name="price" value="1.3"/>
 		<span class="field_span">cost:</span><input type="text" name="cost" value="5.2"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>2.3车位信息添加接口（POST请求）</h3></div>
+	<form action="/citypin/rs/park/update" method="post">
+		<span class="field_span">lat:</span><input type="text" name="lat" value="30.299377"/>
+		<span class="field_span">lng:</span><input type="text" name="lng" value="120.107453"/><br />
+		<span class="field_span">pname:</span><input type="text" name="pname" value="一号位"/>
+		<span class="field_span">recid:</span><input type="text" name="recid" value="z1"/><br />
+		<span class="field_span">devid:</span><input type="text" name="devid" value="c01"/>
+		<span class="field_span">len:</span><input type="text" name="len" value="560"/><br />
+		<span class="field_span">wid:</span><input type="text" name="wid" value="270"/>
+		<span class="field_span">price:</span><input type="text" name="price" value="1.5"/><br />
+		<span class="field_span">belong:</span><input type="text" name="belong" value="政府"/>
+		<span class="field_span">ispub:</span><input type="text" name="ispub" value="1"/><br />
+		<span class="field_span">address:</span><input type="text" name="address" value="银泰地下一层F01-01"/><br />
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
