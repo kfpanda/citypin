@@ -70,15 +70,16 @@ public class ParkWsAction extends BaseAction{
 	}
 	
 	@RequestMapping(value = "/pay", method = RequestMethod.POST)
-	public @ResponseBody Object parkPay(@RequestParam(value = "account") String account,
+	public @ResponseBody Object parkPay(
             @RequestParam(value = "pno") Long pno,
             @RequestParam(value = "stime") Long sTime,
             @RequestParam(value = "etime") Long eTime,
             @RequestParam(value = "price") Double price,
             @RequestParam(value = "cost") Double cost) {
 		
+		String account = getAuthAccount();
 		if(StringUtils.isBlank(account)){
-			return this.getResult(-1, "account isn't null or empty.");
+			return this.getResult(-1, "user is not auth.");
 		}
 		if(pno == null || pno < 0){
 			return this.getResult(-1, "pno isn't null or empty.");

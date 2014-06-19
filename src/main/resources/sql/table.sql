@@ -121,3 +121,9 @@ create table user_msg(
     account varchar(32) not null
 );;
 create unique index um_mid_account_idx on user_msg(mid, account);
+
+
+/*** init ***/
+insert into resource(name, pid, status, type, url) values('超级权限', 0, 1, 1, '/**');
+insert into role(name, role) values('会员', 'ROLE_USER');
+insert into role_res(rid, rno) values(1,1);

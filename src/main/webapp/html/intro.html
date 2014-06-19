@@ -52,7 +52,7 @@
 	</form>
 	
 	<div><h3>1.4用户个人信息查询（POST请求）</h3></div>
-	<form action="/citypin/rs/user/info/15158880000" method="post">
+	<form action="/citypin/rs/user/info" method="post">
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
@@ -68,11 +68,10 @@
 	
 	<div><h3>2.2用户停车付费接口（POST请求）</h3></div>
 	<form action="/citypin/rs/park/pay" method="post">
-		<span class="field_span">account:</span><input type="text" name="account" value="15158880000"/>
-		<span class="field_span">pno:</span><input type="text" name="pno" value="1"/><br />
-		<span class="field_span">stime:</span><input type="text" name="stime" value="1402900650397"/>
-		<span class="field_span">etime:</span><input type="text" name="etime" value="1402911760397"/><br />
-		<span class="field_span">price:</span><input type="text" name="price" value="1.3"/>
+		<span class="field_span">pno:</span><input type="text" name="pno" value="1"/>
+		<span class="field_span">stime:</span><input type="text" name="stime" value="1402900650397"/><br />
+		<span class="field_span">etime:</span><input type="text" name="etime" value="1402911760397"/>
+		<span class="field_span">price:</span><input type="text" name="price" value="1.3"/><br />
 		<span class="field_span">cost:</span><input type="text" name="cost" value="5.2"/><br />
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
@@ -95,13 +94,13 @@
 	
 	<div><h2>3 账单相关接口</h2></div>
 	<div><h3>3.1用户账单查询接口（POST请求）</h3></div>
-	<form action="/citypin/rs/order/search/15158880000" method="post">
+	<form action="/citypin/rs/order/search" method="post">
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
 	<div><h2>4 消息相关接口</h2></div>
 	<div><h3>4.1用户消息查询接口（POST请求）</h3></div>
-	<form action="/citypin/rs/msg/search/15158880000" method="post">
+	<form action="/citypin/rs/msg/search" method="post">
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
