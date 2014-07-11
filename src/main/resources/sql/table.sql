@@ -5,7 +5,9 @@ create table park_info(
     createtime DECIMAL(13,0),
     updatetime DECIMAL(13,0),
     pname varchar(30),
+    /*中继器编号*/
     recid varchar(10) not null,
+    /*设备ID=$主机ID,信道,检测器ID*/
     devid varchar(10) not null,
     address varchar(100) not null,
     lat DECIMAL(10,6) not null,
@@ -14,6 +16,7 @@ create table park_info(
     wid double,
     price double,
     belong varchar(100),
+    park int not null default 2,  /*0代表未停车，1代表停车，2代表无效*/
     ispub int not null default 0, /*1代表发布，0代表不发布*/
     primary key(pno)
 );;
@@ -121,3 +124,9 @@ create table user_msg(
     account varchar(32) not null
 );;
 create unique index um_mid_account_idx on user_msg(mid, account);
+
+
+/*** init ***/
+insert into resource(name, pid, status, type, url) values('超级权限', 0, 1, 1, '/**');
+insert into role(name, role) values('会员', 'ROLE_USER');
+insert into role_res(rid, rno) values(1,1);

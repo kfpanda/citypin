@@ -33,7 +33,13 @@ public class ParkBizImpl implements ParkBiz{
 		return parkMapper.upsertPark(parkInfo);
 	}
 	
+	@Override
+	public int parkStatusUpdate(ParkInfo parkInfo) {
+		return parkMapper.updateStatusPark(parkInfo);
+	}
+	
 	public int parkPay(OrderInfo order){
 		return orderMapper.saveOrder(order);
 	}
+
 }

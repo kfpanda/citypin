@@ -5,7 +5,6 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,12 +66,12 @@ public class UserWsAction extends BaseAction{
 		return this.getResult(userBiz.saveUser(user));
 	}
 	
-	@RequestMapping(value = "/info/{account}")
-	public @ResponseBody Object parkFind(
-            @PathVariable(value = "account") String account) {
+	@RequestMapping(value = "/info")
+	public @ResponseBody Object parkFind() {
 		
+		String account = getAuthAccount();
 		if(StringUtils.isBlank(account)){
-			return this.getResult(-1, "account isn't null or empty.");
+			return this.getResult(-1, "user is not auth.");
 		}
 		Users user = userBiz.findUser(account);
 		return this.getResult(user);

@@ -3,6 +3,9 @@ package com.kfpanda.citypin.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 public class BaseAction {
     
     protected ResultDTO getResult(){
@@ -38,12 +41,19 @@ public class BaseAction {
         return new ResultDTO(result, data, msg, page);
     }
 	
-	//灏哠tring[] 杞崲鎴� List
     public List<String> newList(String[] objList){
         List<String> list = new ArrayList<String>();
         for(String obj : objList){
             list.add(obj);
         }
         return list;
+    }
+    
+    public String getAuthAccount(){
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	if(auth == null){
+    		return null;
+    	}
+    	return auth.getName();
     }
 }

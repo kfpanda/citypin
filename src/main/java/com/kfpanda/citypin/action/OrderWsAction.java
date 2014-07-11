@@ -20,11 +20,12 @@ public class OrderWsAction extends BaseAction{
 	@Resource(name="orderBizImpl")
 	private OrderBiz orderBiz;
 	
-	@RequestMapping(value = "/search/{account}", method = RequestMethod.POST)
-	public @ResponseBody Object orderFind(@PathVariable(value="account")String account) {
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public @ResponseBody Object orderFind() {
 		
+		String account = getAuthAccount();
 		if(StringUtils.isBlank(account)){
-			return this.getResult(-1, "account isn't null or empty.");
+			return this.getResult(-1, "user is not auth.");
 		}
 		return this.getResult(orderBiz.orderFind(account));
 	}

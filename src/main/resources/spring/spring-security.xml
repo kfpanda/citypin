@@ -11,6 +11,8 @@
 	<http pattern="/error/**" security="none" />
 	<http pattern="/login.html" security="none"/>
 	<http pattern="/rs/user/register" security="none"/>
+	<http pattern="/rs/park/search/round" security="none"/>
+	<http pattern="/rs/park/status/update" security="none"/>
 	
 	<http auto-config="true" access-denied-page="/login.html">
 	
