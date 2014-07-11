@@ -15,6 +15,7 @@ public class ParkInfo {
 	private Double wid;
 	private Double price;
 	private String belong;
+	private Integer park;
 	private Integer isPub;
 	
 	public Long getPno() {
@@ -94,6 +95,12 @@ public class ParkInfo {
 	}
 	public void setBelong(String belong) {
 		this.belong = belong;
+	}
+	public Integer getPark() {
+		return park;
+	}
+	public void setPark(Integer park) {
+		this.park = park;
 	}
 	public Integer getIsPub() {
 		return isPub;

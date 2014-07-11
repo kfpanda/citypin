@@ -50,6 +50,7 @@ public class ParkWsAction extends BaseAction{
             @RequestParam(value = "wid") double wid,
             @RequestParam(value = "price") double price,
             @RequestParam(value = "belong") String belong,
+            @RequestParam(value = "park", required=false, defaultValue="2") Integer park,
             @RequestParam(value = "ispub") int isPub,
             @RequestParam(value = "address") String address) {
 		
@@ -63,10 +64,26 @@ public class ParkWsAction extends BaseAction{
 		parkInfo.setWid(wid);
 		parkInfo.setPrice(price);
 		parkInfo.setBelong(belong);
+		parkInfo.setPark(park);
 		parkInfo.setIsPub(isPub);
 		parkInfo.setAddress(address);
 		this.parkBiz.upsertParkInfo(parkInfo);
-		return this.getResult(null);
+		return this.getResult();
+	}
+	
+	@RequestMapping(value = "/status/update", method = RequestMethod.POST)
+	public @ResponseBody Object parkStatusUpdate(
+            @RequestParam(value = "recid") String recId,
+            @RequestParam(value = "devid") String devId,
+            @RequestParam(value = "park") Integer park) {
+		
+		ParkInfo parkInfo = new ParkInfo();
+		parkInfo.setRecId(recId);
+		parkInfo.setDevId(devId);
+		parkInfo.setPark(park);
+		parkInfo.setUpdateTime(System.currentTimeMillis());
+		this.parkBiz.parkStatusUpdate(parkInfo);
+		return this.getResult();
 	}
 	
 	@RequestMapping(value = "/pay", method = RequestMethod.POST)
