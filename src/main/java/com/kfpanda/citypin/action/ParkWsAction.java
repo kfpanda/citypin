@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kfpanda.citypin.bean.OrderInfo;
+import com.kfpanda.citypin.bean.ParkArea;
 import com.kfpanda.citypin.bean.ParkInfo;
+import com.kfpanda.citypin.bean.Region;
 import com.kfpanda.citypin.biz.ParkBiz;
 
 @Controller("parkWsAction")
@@ -37,6 +39,69 @@ public class ParkWsAction extends BaseAction{
 //		}else{
 //			return new JSONPObject(callback, this.getResult(parks));
 //		}
+	}
+	
+	@RequestMapping(value = "/search/round/area", method = RequestMethod.POST)
+	public @ResponseBody Object parkAreaFind(
+            @RequestParam(value = "lat0") Double lat0,
+            @RequestParam(value = "lat1") Double lat1,
+            @RequestParam(value = "lng0") Double lng0,
+            @RequestParam(value = "lng1") Double lng1) {
+		
+		List<ParkArea> parkAreas = this.parkBiz.findParkArea(lat0, lat1, lng0, lng1);
+		return this.getResult(parkAreas);
+	}
+	
+	@RequestMapping(value = "/search/area", method = RequestMethod.POST)
+	public @ResponseBody Object parkAreaFind(
+            @RequestParam(value = "pano") Long pano) {
+		
+		List<ParkInfo> parks = this.parkBiz.findParkInfos(pano);
+		return this.getResult(parks);
+	}
+	
+	@RequestMapping(value = "/region/save", method = RequestMethod.POST)
+	public @ResponseBody Object parkAreaFind(
+            @RequestParam(value = "province") String province,
+            @RequestParam(value = "city") String city,
+            @RequestParam(value = "towns") String towns) {
+		
+		if(StringUtils.isBlank(province) || StringUtils.isBlank(city) 
+				|| StringUtils.isBlank(towns)){
+			this.getResult(-1, "province or city or towns is not null,empty.");
+		}
+		Region region = new Region();
+		region.setProvince(province);
+		region.setCity(city);
+		region.setTowns(towns);
+		this.parkBiz.saveRegion(region);
+		return this.getResult();
+	}
+	
+	@RequestMapping(value = "/area/save", method = RequestMethod.POST)
+	public @ResponseBody Object parkAreaSave(
+			@RequestParam(value = "lat") Double lat,
+            @RequestParam(value = "lng") Double lng,
+            @RequestParam(value = "area") String area,
+            @RequestParam(value = "pnum") Integer pnum,
+            @RequestParam(value = "price") Double price,
+            @RequestParam(value = "rgno") Long rgno,
+            @RequestParam(value = "remark") String remark) {
+		
+		if(StringUtils.isBlank(area) || pnum < 0 
+				|| price < 0 || rgno < 1){
+			this.getResult(-1, "area, pnum, price, rgno isn't right.");
+		}
+		ParkArea parkArea = new ParkArea();
+		parkArea.setLat(lat);
+		parkArea.setLng(lng);
+		parkArea.setArea(area);
+		parkArea.setPnum(pnum);
+		parkArea.setPrice(price);
+		parkArea.setRgno(rgno);
+		parkArea.setRemark(remark);
+		this.parkBiz.saveParkArea(parkArea);
+		return this.getResult();
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

@@ -10,8 +10,8 @@ import org.apache.ibatis.annotations.Update;
 import com.kfpanda.citypin.bean.ParkInfo;
 
 public interface ParkInfoMapper {
-	public final String PARK_FIELD = "createtime,updatetime,pname,recid,devid,address,lat,lng,len,wid,price,belong,park,ispub";
-	public final String PARK_PROP = "#{createTime},#{updateTime},#{pName},#{recId},#{devId},#{address},#{lat},#{lng},#{len},#{wid},#{price},#{belong},#{park},#{isPub}";
+	public final String PARK_FIELD = "createtime,updatetime,pname,recid,devid,address,lat,lng,len,wid,price,belong,park,ispub,pano";
+	public final String PARK_PROP = "#{createTime},#{updateTime},#{pName},#{recId},#{devId},#{address},#{lat},#{lng},#{len},#{wid},#{price},#{belong},#{park},#{isPub},#{pano}";
 	
 	@Insert("INSERT INTO park_info(" + PARK_FIELD + ") VALUES(" + PARK_PROP +")")
 	public int savePark(ParkInfo park);
@@ -22,6 +22,8 @@ public interface ParkInfoMapper {
 	public int updateStatusPark(ParkInfo park);
 	@Select("SELECT pno," + PARK_FIELD + " FROM park_info WHERE pno=#{pno} and ispub=1")
 	public ParkInfo findPark(Long pno);
+	@Select("SELECT pno," + PARK_FIELD + " FROM park_info WHERE pano=#{pano} and ispub=1 and park=0")
+	public List<ParkInfo> findAreaPark(Long pano);
 	@Select("SELECT pno," + PARK_FIELD + " FROM park_info WHERE lat>=#{latX0} and lat <=#{latX1} and lng>=#{lngY0} and lng<=#{lngY1} and ispub=1")
 	public List<ParkInfo> findParks(@Param("latX0")Double latX0, @Param("latX1")Double latX1, @Param("lngY0")Double lngY0, @Param("lngY1")Double lngY1);
 }

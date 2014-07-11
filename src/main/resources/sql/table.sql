@@ -18,11 +18,13 @@ create table park_info(
     belong varchar(100),
     park int not null default 2,  /*0代表未停车，1代表停车，2代表无效*/
     ispub int not null default 0, /*1代表发布，0代表不发布*/
+    pano bigint,
     primary key(pno)
 );;
 create unique index pi_pno_idx on park_info(pno);
 create unique index pi_recid_devid_idx on park_info(recid, devid);
 create index pi_lat_lng_idx on park_info(lat, lng);
+create index pi_pano_idx on park_info(pano);
 
 
 drop table if exists users;
@@ -132,23 +134,31 @@ insert into role(name, role) values('会员', 'ROLE_USER');
 insert into role_res(rid, rno) values(1,1);
 
 
-drop table if exists area;
-/*消息表*/
-create table area(
-    mid bigint not null,
-    province varchar(32) not null,
-    city varchar(32) not null,
-    towns varchar(32) not null,
+DROP TABLE IF EXISTS region;
+/*区域表*/
+CREATE TABLE region(
+    rgno BIGINT AUTO_INCREMENT,
+    province VARCHAR(32) NOT NULL,
+    city VARCHAR(32) NOT NULL,
+    towns VARCHAR(32) NOT NULL,
+    PRIMARY KEY(rgno)
 );;
-create unique index um_mid_account_idx on user_msg(mid, account);
+CREATE UNIQUE INDEX r_rgno_idx ON region(rgno);
 
 
-drop table if exists park_address;
-/*消息表*/
-create table park_address(
-    mid bigint not null,
-    address varchar(32) not null,
-    belong varchar(32) not null,
-    towns varchar(32) not null,
+drop table if exists park_area;
+/*车位区域表*/
+create table park_area(
+    pano bigint AUTO_INCREMENT,
+    rgno bigint not null,
+    createtime DECIMAL(13,0),
+    updatetime DECIMAL(13,0),
+    area varchar(64) not null,
+    lat DECIMAL(10,6) not null,
+    lng DECIMAL(10,6) not null,
+    price double,
+    pnum int not null,
+    remark varchar(200) not null,
+    PRIMARY KEY(pano)
 );;
-create unique index um_mid_account_idx on user_msg(mid, account);
+create unique index pa_pano_idx on park_area(pano);

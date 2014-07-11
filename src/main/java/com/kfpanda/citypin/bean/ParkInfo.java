@@ -17,6 +17,7 @@ public class ParkInfo {
 	private String belong;
 	private Integer park;
 	private Integer isPub;
+	private Long pano;
 	
 	public Long getPno() {
 		return pno;
@@ -107,5 +108,11 @@ public class ParkInfo {
 	}
 	public void setIsPub(Integer isPub) {
 		this.isPub = isPub;
+	}
+	public Long getPano() {
+		return pano;
+	}
+	public void setPano(Long pano) {
+		this.pano = pano;
 	}
 }
