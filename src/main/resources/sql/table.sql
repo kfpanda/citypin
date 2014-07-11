@@ -130,3 +130,25 @@ create unique index um_mid_account_idx on user_msg(mid, account);
 insert into resource(name, pid, status, type, url) values('超级权限', 0, 1, 1, '/**');
 insert into role(name, role) values('会员', 'ROLE_USER');
 insert into role_res(rid, rno) values(1,1);
+
+
+drop table if exists area;
+/*消息表*/
+create table area(
+    mid bigint not null,
+    province varchar(32) not null,
+    city varchar(32) not null,
+    towns varchar(32) not null,
+);;
+create unique index um_mid_account_idx on user_msg(mid, account);
+
+
+drop table if exists park_address;
+/*消息表*/
+create table park_address(
+    mid bigint not null,
+    address varchar(32) not null,
+    belong varchar(32) not null,
+    towns varchar(32) not null,
+);;
+create unique index um_mid_account_idx on user_msg(mid, account);
