@@ -7,7 +7,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,7 +22,7 @@ import com.kfpanda.citypin.dao.sql.ParkInfoSql;
 
 @Repository
 public class ParkInfoDao {
-	private final Logger logger = Logger.getLogger(ParkInfoDao.class);
+	private static final Logger logger = LoggerFactory.getLogger(ParkInfoDao.class);
 	
 	@Resource(name="parkJdbcTemplate")
 	private JdbcTemplate jdbcTemplate;

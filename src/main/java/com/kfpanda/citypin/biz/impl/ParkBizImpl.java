@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.kfpanda.citypin.bean.OrderInfo;
@@ -15,7 +16,7 @@ import com.kfpanda.citypin.mapper.ParkInfoMapper;
 
 @Repository
 public class ParkBizImpl implements ParkBiz{
-	private final Logger logger = Logger.getLogger(ParkBizImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ParkBizImpl.class);
 	
 	@Resource(name="orderInfoMapper")
 	private OrderInfoMapper orderMapper;

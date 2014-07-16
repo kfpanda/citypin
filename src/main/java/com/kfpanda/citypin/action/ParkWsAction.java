@@ -5,7 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ import com.kfpanda.citypin.biz.ParkBiz;
 @Controller("parkWsAction")
 @RequestMapping("/park")
 public class ParkWsAction extends BaseAction{
-	private final Logger logger = Logger.getLogger(ParkWsAction.class);
+	private static final Logger logger = LoggerFactory.getLogger(ParkWsAction.class);
 	
 	@Resource(name="parkBizImpl")
 	private ParkBiz parkBiz;

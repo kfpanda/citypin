@@ -3,7 +3,8 @@ package com.kfpanda.citypin.action;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,7 @@ import com.kfpanda.citypin.biz.UserBiz;
 @Controller("userWsAction")
 @RequestMapping("/user")
 public class UserWsAction extends BaseAction{
-	private final Logger logger = Logger.getLogger(UserWsAction.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserWsAction.class);
 	@Resource(name="userBizImpl")
 	private UserBiz userBiz;
 	

@@ -3,9 +3,9 @@ package com.kfpanda.citypin.action;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +15,7 @@ import com.kfpanda.citypin.biz.OrderBiz;
 @Controller("orderWsAction")
 @RequestMapping("/order")
 public class OrderWsAction extends BaseAction{
-	private final Logger logger = Logger.getLogger(OrderWsAction.class);
+	private static final Logger logger = LoggerFactory.getLogger(OrderWsAction.class);
 	
 	@Resource(name="orderBizImpl")
 	private OrderBiz orderBiz;
