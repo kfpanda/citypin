@@ -37,6 +37,7 @@ public class ParkMapperTest {
 		park.setPrice(2.5);
 		park.setBelong("政府");
 		park.setIsPub(1);
+		park.setPano(new Long(1));
 		int rlt = parkMapper.savePark(park);
 		Assert.assertEquals(rlt, 1);
 	}
@@ -78,6 +79,12 @@ public class ParkMapperTest {
 	public void findPark(){
 		ParkInfo park = parkMapper.findPark(new Long(1));
 		Assert.assertEquals(park.getpName(), "pname1");
+	}
+	
+	@Test
+	public void findAreaPark(){
+		List<ParkInfo> parkList = parkMapper.findAreaPark(new Long(1));
+		Assert.assertTrue(parkList.size() > 0);
 	}
 	
 	@Test

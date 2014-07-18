@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
 public class AuthenticationTokenProcessingFilter {
-	@Autowired UserService userService;
+//	@Autowired UserService userService;
     @Autowired TokenUtils tokenUtils;
     AuthenticationManager authManager;
 
@@ -25,7 +25,7 @@ public class AuthenticationTokenProcessingFilter {
         this.authManager = authManager;
     }
 
-    @Override
+//    @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
         @SuppressWarnings("unchecked")
