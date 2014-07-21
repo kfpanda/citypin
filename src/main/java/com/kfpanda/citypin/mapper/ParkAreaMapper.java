@@ -30,7 +30,7 @@ public interface ParkAreaMapper {
 	 * @param lngY1
 	 * @return
 	 */
-	@Select("SELECT pano," + AREA_FIELD + ", COUNT(1) AS fpnum FROM park_area pa, park_info pi WHERE pa.pano=pi.pano AND pi.ispub=1 AND pi.park=0 AND pa.lat>=#{latX0} and pa.lat <=#{latX1} and pa.lng>=#{lngY0} and pa.lng<=#{lngY1}")
+	@Select("SELECT pa.*, COUNT(1) AS fpnum FROM park_area pa, park_info pi WHERE pa.pano=pi.pano AND pi.ispub=1 AND pi.park=0 AND pa.lat>=#{latX0} and pa.lat <=#{latX1} and pa.lng>=#{lngY0} and pa.lng<=#{lngY1}")
 	public List<ParkArea> findFreeParkArea(@Param("latX0")Double latX0, @Param("latX1")Double latX1, @Param("lngY0")Double lngY0, @Param("lngY1")Double lngY1);
 	@Select("SELECT pano," + AREA_FIELD + " FROM park_area ORDER BY pano")
 	public List<ParkArea> findParkAreas();

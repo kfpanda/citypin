@@ -85,7 +85,11 @@ public class DataImport {
 			try{
 			geoConv(parkArea);
 			}catch(Exception ex){
-				geoConv(parkArea);
+				try {
+					geoConv(parkArea);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			parkArea.setUpdateTime(System.currentTimeMillis());
 			parkAreaMapper.updateParkArea(parkArea);
@@ -96,11 +100,11 @@ public class DataImport {
 		}
 	}
 	
-	public static void geoConv(ParkArea parkArea){
+	public static void geoConv(ParkArea parkArea) throws Exception{
 		String url = "http://api.map.baidu.com/geoconv/v1/?coords="
 				+ parkArea.getLat().longValue() + "," + parkArea.getLng().longValue() + "&from=3&to=5&ak=xtmDCOM9wrnZ4OhZKtOPIhsQ";
 		ByteBuffer buff = HttpRequest.sendGetRequest(url, null);
-		try {
+//		try {
 			/*
 			 * {
 					status : 0,
@@ -113,6 +117,7 @@ public class DataImport {
 					]
 				}
 			 */
+			System.out.println(new String(buff.array()));
 			Map<String, Object> result = JsonUtils.getInstance().readValue(buff.array(), Map.class);
 			List<Map<String,Object>> posList = (List<Map<String, Object>>) result.get("result");
 			if(posList != null && posList.size() > 0){
@@ -122,13 +127,13 @@ public class DataImport {
 			}else{
 				System.out.println("WARN: geoConv fail. ID(" + parkArea.getPano() + ")");
 			}
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		} catch (JsonParseException e) {
+//			e.printStackTrace();
+//		} catch (JsonMappingException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	public static void geoConv(Map<String, Object> param){
