@@ -77,6 +77,60 @@ public class DataImport {
 	
 	private static String sss = "http://www.51park.com.cn/upload/home/upload/cppark/06.jpg";
 	
+	@Test
+	public void updateGeo() throws InterruptedException{
+		List<ParkArea> list = parkAreaMapper.findParkAreas();
+		for(int i = 0; i < list.size(); i++){
+			ParkArea parkArea = list.get(i);
+			try{
+			geoConv(parkArea);
+			}catch(Exception ex){
+				geoConv(parkArea);
+			}
+			parkArea.setUpdateTime(System.currentTimeMillis());
+			parkAreaMapper.updateParkArea(parkArea);
+			System.out.println(parkArea.getPano());
+//			if(i % 50 == 0){
+//				Thread.sleep(60000);
+//			}
+		}
+	}
+	
+	public static void geoConv(ParkArea parkArea){
+		String url = "http://api.map.baidu.com/geoconv/v1/?coords="
+				+ parkArea.getLat().longValue() + "," + parkArea.getLng().longValue() + "&from=3&to=5&ak=xtmDCOM9wrnZ4OhZKtOPIhsQ";
+		ByteBuffer buff = HttpRequest.sendGetRequest(url, null);
+		try {
+			/*
+			 * {
+					status : 0,
+					result : 
+					[
+						{
+							x : 120.67266583495,
+							y : 28.008823626428
+						}
+					]
+				}
+			 */
+			Map<String, Object> result = JsonUtils.getInstance().readValue(buff.array(), Map.class);
+			List<Map<String,Object>> posList = (List<Map<String, Object>>) result.get("result");
+			if(posList != null && posList.size() > 0){
+				Map<String,Object> map = posList.get(0);
+				parkArea.setLat((Double)map.get("x"));
+				parkArea.setLng((Double)map.get("y"));
+			}else{
+				System.out.println("WARN: geoConv fail. ID(" + parkArea.getPano() + ")");
+			}
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void geoConv(Map<String, Object> param){
 		String url = "http://api.map.baidu.com/geoconv/v1/?coords="
 				+ param.get("X").toString() + "," + param.get("Y").toString() + "&from=3&to=5&ak=xtmDCOM9wrnZ4OhZKtOPIhsQ";
