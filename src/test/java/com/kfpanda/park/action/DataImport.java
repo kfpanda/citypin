@@ -52,8 +52,8 @@ public class DataImport {
 			parkArea.setPnum(Integer.parseInt(map.get("PCOUNT").toString()));
 //			private String TCOUNT;
 			parkArea.setaType(map.get("TTYPE").toString());
-			parkArea.setLat(Double.parseDouble(map.get("X").toString()));
-			parkArea.setLng(Double.parseDouble(map.get("Y").toString()));
+			parkArea.setLng(Double.parseDouble(map.get("X").toString()));
+			parkArea.setLat(Double.parseDouble(map.get("Y").toString()));
 			//图片下载
 			String fileName = GetImage.imgSave(map.get("IMG").toString());
 			parkArea.setaImg(parkImgPath + fileName);
@@ -102,7 +102,7 @@ public class DataImport {
 	
 	public static void geoConv(ParkArea parkArea) throws Exception{
 		String url = "http://api.map.baidu.com/geoconv/v1/?coords="
-				+ parkArea.getLat().longValue() + "," + parkArea.getLng().longValue() + "&from=3&to=5&ak=xtmDCOM9wrnZ4OhZKtOPIhsQ";
+				+ parkArea.getLng().longValue() + "," + parkArea.getLat().longValue() + "&from=3&to=5&ak=xtmDCOM9wrnZ4OhZKtOPIhsQ";
 		ByteBuffer buff = HttpRequest.sendGetRequest(url, null);
 //		try {
 			/*
@@ -122,8 +122,8 @@ public class DataImport {
 			List<Map<String,Object>> posList = (List<Map<String, Object>>) result.get("result");
 			if(posList != null && posList.size() > 0){
 				Map<String,Object> map = posList.get(0);
-				parkArea.setLat((Double)map.get("x"));
-				parkArea.setLng((Double)map.get("y"));
+				parkArea.setLng((Double)map.get("x"));
+				parkArea.setLat((Double)map.get("y"));
 			}else{
 				System.out.println("WARN: geoConv fail. ID(" + parkArea.getPano() + ")");
 			}

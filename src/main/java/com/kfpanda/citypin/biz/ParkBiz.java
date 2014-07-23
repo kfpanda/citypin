@@ -12,6 +12,7 @@ public interface ParkBiz {
 	public List<ParkInfo> findParkInfos(Double latX0, Double latX1, Double lngY0, Double lngY1);
 	public List<ParkArea> findParkArea(Double latX0, Double latX1, Double lngY0, Double lngY1);
 	public List<ParkArea> findFreeParkArea(Double latX0, Double latX1, Double lngY0, Double lngY1);
+	public List<ParkInfo> findParkInfos(Long pano);
 	public List<ParkInfo> findFreeParkInfos(Long pano);
 	public int upsertParkInfo(ParkInfo parkInfo);
 	public int saveParkArea(ParkArea parkArea);

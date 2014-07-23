@@ -157,8 +157,8 @@ create table park_area(
     addr varchar(128) not null, /*地址*/
     atype varchar(128) not null,/*停车场类型*/
     aimg varchar(128) not null,/*停车场实景图*/
-    lat DECIMAL(10,6) not null,
     lng DECIMAL(10,6) not null,
+    lat DECIMAL(10,6) not null,
     paytype DECIMAL(1,0) default 1 not null, /*收费方式*/
     price double,
     pnum int not null,/*总车位*/

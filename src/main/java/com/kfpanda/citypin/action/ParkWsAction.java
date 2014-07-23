@@ -29,12 +29,12 @@ public class ParkWsAction extends BaseAction{
 	
 	@RequestMapping(value = "/search/round", method = RequestMethod.POST)
 	public @ResponseBody Object parkFind(
-            @RequestParam(value = "lat0") Double lat0,
-            @RequestParam(value = "lat1") Double lat1,
             @RequestParam(value = "lng0") Double lng0,
-            @RequestParam(value = "lng1") Double lng1) {
+            @RequestParam(value = "lng1") Double lng1,
+            @RequestParam(value = "lat0") Double lat0,
+            @RequestParam(value = "lat1") Double lat1) {
 		
-		List<ParkInfo> parks = this.parkBiz.findParkInfos(lat0, lat1, lng0, lng1);
+		List<ParkInfo> parks = this.parkBiz.findParkInfos(lng0, lng1, lat0, lat1);
 //		if(StringUtils.isBlank(callback)){
 			return this.getResult(parks);
 //		}else{
@@ -44,28 +44,36 @@ public class ParkWsAction extends BaseAction{
 	
 	@RequestMapping(value = "/search/round/area", method = RequestMethod.POST)
 	public @ResponseBody Object parkAreaFind(
+			@RequestParam(value = "lng0") Double lng0,
+            @RequestParam(value = "lng1") Double lng1,
             @RequestParam(value = "lat0") Double lat0,
-            @RequestParam(value = "lat1") Double lat1,
-            @RequestParam(value = "lng0") Double lng0,
-            @RequestParam(value = "lng1") Double lng1) {
+            @RequestParam(value = "lat1") Double lat1) {
 		
-		List<ParkArea> parkAreas = this.parkBiz.findParkArea(lat0, lat1, lng0, lng1);
+		List<ParkArea> parkAreas = this.parkBiz.findParkArea(lng0, lng1, lat0, lat1);
 		return this.getResult(parkAreas);
+	}
+	
+	@RequestMapping(value = "/search/area", method = RequestMethod.POST)
+	public @ResponseBody Object parkAreaFind(
+            @RequestParam(value = "pano") Long pano) {
+		
+		List<ParkInfo> parks = this.parkBiz.findParkInfos(pano);
+		return this.getResult(parks);
 	}
 	
 	@RequestMapping(value = "/search/round/area/free", method = RequestMethod.POST)
 	public @ResponseBody Object freeParkAreaFind(
+			@RequestParam(value = "lng0") Double lng0,
+            @RequestParam(value = "lng1") Double lng1,
             @RequestParam(value = "lat0") Double lat0,
-            @RequestParam(value = "lat1") Double lat1,
-            @RequestParam(value = "lng0") Double lng0,
-            @RequestParam(value = "lng1") Double lng1) {
+            @RequestParam(value = "lat1") Double lat1) {
 		
-		List<ParkArea> parkAreas = this.parkBiz.findFreeParkArea(lat0, lat1, lng0, lng1);
+		List<ParkArea> parkAreas = this.parkBiz.findFreeParkArea(lng0, lng1, lat0, lat1);
 		return this.getResult(parkAreas);
 	}
 	
 	@RequestMapping(value = "/search/area/free", method = RequestMethod.POST)
-	public @ResponseBody Object parkAreaFind(
+	public @ResponseBody Object freeParkAreaFind(
             @RequestParam(value = "pano") Long pano) {
 		
 		List<ParkInfo> parks = this.parkBiz.findFreeParkInfos(pano);
@@ -92,11 +100,20 @@ public class ParkWsAction extends BaseAction{
 	
 	@RequestMapping(value = "/area/save", method = RequestMethod.POST)
 	public @ResponseBody Object parkAreaSave(
-			@RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lng") Double lng,
+            @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "area") String area,
+            @RequestParam(value = "addr") String addr,
+            @RequestParam(value = "atype") String aType,
+            @RequestParam(value = "aimg") String aImg,
+            @RequestParam(value = "paytype") String payType,
             @RequestParam(value = "pnum") Integer pnum,
+            @RequestParam(value = "acolor") String aColor,
+            @RequestParam(value = "priceday") String priceDay,
+            @RequestParam(value = "pricenight") String priceNight,
             @RequestParam(value = "price") Double price,
+            @RequestParam(value = "opentime") String openTime,
+            @RequestParam(value = "closetime") String closeTime,
             @RequestParam(value = "rgno") Long rgno,
             @RequestParam(value = "remark") String remark) {
 		
@@ -105,11 +122,22 @@ public class ParkWsAction extends BaseAction{
 			this.getResult(-1, "area, pnum, price, rgno isn't right.");
 		}
 		ParkArea parkArea = new ParkArea();
-		parkArea.setLat(lat);
-		parkArea.setLng(lng);
+		parkArea.setCreateTime(System.currentTimeMillis());
+		parkArea.setUpdateTime(System.currentTimeMillis());
 		parkArea.setArea(area);
-		parkArea.setPnum(pnum);
+		parkArea.setAddr(addr);
+		parkArea.setaType(aType);
+		parkArea.setaImg(aImg);
+		parkArea.setLng(lng);
+		parkArea.setLat(lat);
+		parkArea.setPayType(1);
 		parkArea.setPrice(price);
+		parkArea.setPnum(pnum);
+		parkArea.setaColor(aColor);
+		parkArea.setPriceDay(priceDay);
+		parkArea.setPriceNight(priceNight);
+		parkArea.setOpenTime(openTime);
+		parkArea.setCloseTime(closeTime);
 		parkArea.setRgno(rgno);
 		parkArea.setRemark(remark);
 		this.parkBiz.saveParkArea(parkArea);
@@ -118,8 +146,8 @@ public class ParkWsAction extends BaseAction{
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody Object parkUpdate(
-			@RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lng") Double lng,
+            @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "pname") String pName,
             @RequestParam(value = "recid") String recId,
             @RequestParam(value = "devid") String devId,
@@ -132,8 +160,8 @@ public class ParkWsAction extends BaseAction{
             @RequestParam(value = "address") String address) {
 		
 		ParkInfo parkInfo = new ParkInfo();
-		parkInfo.setLat(lat);
 		parkInfo.setLng(lng);
+		parkInfo.setLat(lat);
 		parkInfo.setpName(pName);
 		parkInfo.setRecId(recId);
 		parkInfo.setDevId(devId);
