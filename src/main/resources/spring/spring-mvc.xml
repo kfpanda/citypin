@@ -21,10 +21,12 @@
 			<value type="org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion">NON_NULL</value>
 		</property>
 	</bean> -->
+	<bean id="jsonResultNamingStrategy" class="com.util.common.JsonResultNamingStrategy"></bean>
 	<bean id="notNullObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
 		<property name="serializationInclusion">
 			<value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
 		</property>
+		<property name="propertyNamingStrategy" ref="jsonResultNamingStrategy"></property>
 	</bean>
 	<mvc:annotation-driven>
 		<mvc:message-converters>
