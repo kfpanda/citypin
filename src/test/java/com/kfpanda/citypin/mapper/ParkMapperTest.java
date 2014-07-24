@@ -27,8 +27,8 @@ public class ParkMapperTest {
 		park.setAddress("address");
 		park.setCreateTime(System.currentTimeMillis());
 		park.setUpdateTime(System.currentTimeMillis());
-		park.setLat(134.6543);
-		park.setLng(164.2345);
+		park.setLng(120.2345);
+		park.setLat(30.6543);
 		park.setpName("pname1");
 		park.setRecId("#001");
 		park.setDevId("06");
@@ -48,8 +48,8 @@ public class ParkMapperTest {
 		park.setAddress("address");
 		park.setCreateTime(System.currentTimeMillis());
 		park.setUpdateTime(System.currentTimeMillis());
-		park.setLat(134.6543);
-		park.setLng(164.2345);
+		park.setLng(120.2345);
+		park.setLat(30.6543);
 		park.setpName("pname1");
 		park.setRecId("#001");
 		park.setDevId("$001,00,06");
@@ -89,7 +89,7 @@ public class ParkMapperTest {
 	
 	@Test
 	public void findParks(){
-		List<ParkInfo> parkList = parkMapper.findParks(130.0,140.0,160.0,170.0);
+		List<ParkInfo> parkList = parkMapper.findParks(120.0,121.0,30.0,31.0);
 		Assert.assertTrue(parkList.size() > 0);
 	}
 	

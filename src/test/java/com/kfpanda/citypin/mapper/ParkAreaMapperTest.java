@@ -31,8 +31,8 @@ public class ParkAreaMapperTest {
 		parkArea.setAddr("城西银泰");
 		parkArea.setaType("地下停车场");
 		parkArea.setaImg("/cpfile/img/park/kjlkagjlkasdjfl.jpg");
-		parkArea.setLat(134.6543);
-		parkArea.setLng(164.2345);
+		parkArea.setLng(120.2345);
+		parkArea.setLat(30.6543);
 		parkArea.setPayType(1);
 		parkArea.setPrice(2.5);
 		parkArea.setPnum(210);
@@ -52,8 +52,8 @@ public class ParkAreaMapperTest {
 		ParkArea parkArea = new ParkArea();
 		parkArea.setCreateTime(System.currentTimeMillis());
 		parkArea.setUpdateTime(System.currentTimeMillis());
-		parkArea.setLat(134.6543);
-		parkArea.setLng(164.2345);
+		parkArea.setLng(120.2345);
+		parkArea.setLat(30.6543);
 		parkArea.setPrice(2.5);
 		parkArea.setPnum(210);
 		parkArea.setArea("城西银泰1");
@@ -65,13 +65,13 @@ public class ParkAreaMapperTest {
 	
 	@Test
 	public void findParkArea(){
-		List<ParkArea> parkAreaList = parkAreaMapper.findParkArea(130.0,140.0,160.0,170.0);
+		List<ParkArea> parkAreaList = parkAreaMapper.findParkArea(120.0,121.0,30.0,31.0);
 		Assert.assertTrue(parkAreaList.size() > 0);
 	}
 	
 	@Test
 	public void findFreeParkArea(){
-		List<ParkArea> parkAreaList = parkAreaMapper.findFreeParkArea(130.0,140.0,160.0,170.0);
+		List<ParkArea> parkAreaList = parkAreaMapper.findFreeParkArea(120.0,121.0,30.0,31.0);
 		Assert.assertTrue(parkAreaList.size() > 0);
 	}
 	

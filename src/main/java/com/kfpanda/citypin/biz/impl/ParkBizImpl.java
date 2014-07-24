@@ -32,9 +32,9 @@ public class ParkBizImpl implements ParkBiz{
 	private RegionMapper regionMapper;
 	
 	@Override
-	public List<ParkInfo> findParkInfos(Double latX0, Double latX1,
-			Double lngY0, Double lngY1) {
-		return this.parkMapper.findParks(latX0, latX1, lngY0, lngY1);
+	public List<ParkInfo> findParkInfos(Double lngX0, Double lngX1,
+			Double latY0, Double latY1) {
+		return this.parkMapper.findParks(lngX0, lngX1, latY0, latY1);
 	}
 
 	@Override
@@ -52,9 +52,9 @@ public class ParkBizImpl implements ParkBiz{
 	}
 
 	@Override
-	public List<ParkArea> findParkArea(Double latX0, Double latX1,
-			Double lngY0, Double lngY1) {
-		return parkAreaMapper.findParkArea(latX0, latX1, lngY0, lngY1);
+	public List<ParkArea> findParkArea(Double lngX0, Double lngX1,
+			Double latY0, Double latY1) {
+		return parkAreaMapper.findParkArea(lngX0, lngX1, latY0, latY1);
 	}
 
 	@Override
@@ -73,9 +73,14 @@ public class ParkBizImpl implements ParkBiz{
 	}
 
 	@Override
-	public List<ParkArea> findFreeParkArea(Double latX0, Double latX1,
-			Double lngY0, Double lngY1) {
-		return parkAreaMapper.findFreeParkArea(latX0, latX1, lngY0, lngY1);
+	public List<ParkArea> findFreeParkArea(Double lngX0, Double lngX1,
+			Double latY0, Double latY1) {
+		return parkAreaMapper.findFreeParkArea(lngX0, lngX1, latY0, latY1);
+	}
+	
+	@Override
+	public List<ParkInfo> findParkInfos(Long pano) {
+		return parkMapper.findAreaPark(pano);
 	}
 
 }
