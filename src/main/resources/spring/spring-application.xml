@@ -32,6 +32,6 @@
 	<!-- <import resource="classpath*:db/ocrm-dataAccess.xml" /> -->
 	<import resource="classpath*:spring/spring-dao.xml" />
 	<import resource="classpath*:spring/spring-mybatis.xml" />
-	<!-- <import resource="classpath*:spring/spring-security.xml" /> -->
+	<import resource="classpath*:spring/spring-security.xml" />
 	
 </beans>
