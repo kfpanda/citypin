@@ -9,9 +9,9 @@ import com.kfpanda.citypin.bean.Region;
 
 public interface ParkBiz {
 	
-	public List<ParkInfo> findParkInfos(Double latX0, Double latX1, Double lngY0, Double lngY1);
-	public List<ParkArea> findParkArea(Double latX0, Double latX1, Double lngY0, Double lngY1);
-	public List<ParkArea> findFreeParkArea(Double latX0, Double latX1, Double lngY0, Double lngY1);
+	public List<ParkInfo> findParkInfos(Double lngX0, Double lngX1,Double latY0, Double latY1);
+	public List<ParkArea> findParkArea(Double lngX0, Double lngX1,Double latY0, Double latY1);
+	public List<ParkArea> findFreeParkArea(Double lngX0, Double lngX1,Double latY0, Double latY1);
 	public List<ParkInfo> findParkInfos(Long pano);
 	public List<ParkInfo> findFreeParkInfos(Long pano);
 	public int upsertParkInfo(ParkInfo parkInfo);

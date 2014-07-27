@@ -173,6 +173,68 @@
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
+	<div><h2>5 违章相关接口</h2></div>
+	<div><h3>5.1违章信息添加接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/weiz/save" method="post">
+	<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/>
+	<span class="field_span">wztime:</span><input type="text" name="wztime" value="2014-4-5 16:12:00"/><br />
+	<span class="field_span">area:</span><input type="text" name="area" value="城西银泰城"/>
+	<span class="field_span">carno:</span><input type="text" name="carno" value="浙A-561452"/><br />
+	<span class="field_span">cjno:</span><input type="text" name="cjno" value="AJKHS123456"/>
+	<span class="field_span">lng:</span><input type="text" name="lng" value="120.107453"/><br />
+	<span class="field_span">lat:</span><input type="text" name="lat" value="30.299377"/>
+	<span class="field_span">type:</span><input type="text" name="type" value="1"/><br />
+	<span class="field_span">koufen:</span><input type="text" name="koufen" value="2"/>
+	<span class="field_span">fakuan:</span><input type="text" name="fakuan" value="100"/><br />
+	<span class="field_span">wzdetail:</span><input type="text" name="wzdetail" value="非法停车"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>5.2违章信息查询接口 通过第三方接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/weiz/find/third" method="post">
+		<span class="field_span">province:</span><input type="text" name="province" value="浙江省"/>
+		<span class="field_span">city:</span><input type="text" name="city" value="湖州"/><br />
+		<span class="field_span">abbr:</span><input type="text" name="abbr" value="浙"/>
+		<span class="field_span">carno:</span><input type="text" name="carno" value="E2911K"/><br />
+		<span class="field_span">cjno:</span><input type="text" name="cjno" value="123456"/>
+		<span class="field_span">buyyear:</span><input type="text" name="buyyear" value="2014"/><br />
+		<span class="field_span">buymonth:</span><input type="text" name="buymonth" value="02"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>5.3用户违章信息查询接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/weiz/find" method="post">
+	<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h2>6 贴条相关接口</h2></div>
+	<div><h3>6.1贴条信息添加接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/tietiao/save" method="post">
+	<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/>
+	<span class="field_span">tttime:</span><input type="text" name="tttime" value="2014-4-5 16:12:00"/><br />
+	<span class="field_span">area:</span><input type="text" name="area" value="城西银泰城"/>
+	<span class="field_span">lng:</span><input type="text" name="lng" value="120.107453"/><br />
+	<span class="field_span">lat:</span><input type="text" name="lat" value="30.299377"/>
+	<span class="field_span">type:</span><input type="text" name="type" value="1"/><br />
+	<span class="field_span">wzdetail:</span><input type="text" name="wzdetail" value="非法停车"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>6.2用户贴条信息查询接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/tietiao/find" method="post">
+		<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>6.3附近区域贴条查询接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/tietiao/find/round" method="get">
+		<span class="field_span">lng0:</span><input type="text" name="lng0" value="120.0"/>
+		<span class="field_span">lng1:</span><input type="text" name="lng1" value="121.0"/><br />
+		<span class="field_span">lat0:</span><input type="text" name="lat0" value="30.0"/>
+		<span class="field_span">lat1:</span><input type="text" name="lat1" value="31.0"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
 </div>
 </body>
 </html>

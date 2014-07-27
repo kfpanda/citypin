@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,7 +20,7 @@ public class MessageWsAction extends BaseAction{
 	@Resource(name="msgBizImpl")
 	private MsgBiz msgBiz;
 	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/search")
 	public @ResponseBody Object msgSearch() {
 		
 		String account = getAuthAccount();
@@ -31,7 +30,7 @@ public class MessageWsAction extends BaseAction{
 		return this.getResult(msgBiz.msgSearch(account));
 	}
 	
-	@RequestMapping(value = "/send", method = RequestMethod.POST)
+	@RequestMapping(value = "/send")
 	public @ResponseBody Object msgSend(@RequestParam(value = "account") String account,
 			@RequestParam(value = "title") String title,
 			@RequestParam(value = "frm", required=false) String from,
