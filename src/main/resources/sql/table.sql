@@ -171,3 +171,46 @@ create table park_area(
     PRIMARY KEY(pano)
 );;
 create unique index pa_pano_idx on park_area(pano);
+
+
+/*违章记录表*/
+DROP TABLE IF EXISTS weizhang;
+
+CREATE TABLE weizhang(
+    wzid BIGINT AUTO_INCREMENT,
+    createtime DECIMAL(13,0),
+    updatetime DECIMAL(13,0),
+    wztime varchar(20) NOT NULL,
+    carno VARCHAR(12) NOT NULL,
+    cjno VARCHAR(20) NOT NULL,
+    area VARCHAR(70) NOT NULL,
+    lng DECIMAL(10,6) not null,
+    lat DECIMAL(10,6) not null,
+    koufen DECIMAL(2,0) default 1 not null,
+    fakuan VARCHAR(6) default '0' NOT NULL,
+    wzdetail VARCHAR(200) NOT NULL,
+    type DECIMAL(1,0) default 1 not null, 
+    account varchar(32),
+    PRIMARY KEY(wzid)
+);;
+CREATE UNIQUE INDEX tt_wzid_idx ON weizhang(wzid);
+CREATE UNIQUE INDEX tt_lng_lat_idx ON weizhang(lng,lat);
+
+/*贴条记录表*/
+DROP TABLE IF EXISTS tietiao;
+
+CREATE TABLE tietiao(
+    ttid BIGINT AUTO_INCREMENT,
+    createtime DECIMAL(13,0),
+    updatetime DECIMAL(13,0),
+    tttime varchar(20) NOT NULL,
+    area VARCHAR(70) NOT NULL,
+    lng DECIMAL(10,6) not null,
+    lat DECIMAL(10,6) not null,
+    wzdetail VARCHAR(200) NOT NULL,
+    type DECIMAL(1,0) default 1 not null, 
+    account varchar(32),
+    PRIMARY KEY(ttid)
+);;
+CREATE UNIQUE INDEX tt_ttid_idx ON tietiao(ttid);
+CREATE INDEX tt_lng_lat_idx ON tietiao(lng,lat);

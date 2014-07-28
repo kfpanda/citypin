@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,7 +26,7 @@ public class ParkWsAction extends BaseAction{
 	@Resource(name="parkBizImpl")
 	private ParkBiz parkBiz;
 	
-	@RequestMapping(value = "/search/round", method = RequestMethod.POST)
+	@RequestMapping(value = "/search/round")
 	public @ResponseBody Object parkFind(
             @RequestParam(value = "lng0") Double lng0,
             @RequestParam(value = "lng1") Double lng1,
@@ -42,7 +41,7 @@ public class ParkWsAction extends BaseAction{
 //		}
 	}
 	
-	@RequestMapping(value = "/search/round/area", method = RequestMethod.POST)
+	@RequestMapping(value = "/search/round/area")
 	public @ResponseBody Object parkAreaFind(
 			@RequestParam(value = "lng0") Double lng0,
             @RequestParam(value = "lng1") Double lng1,
@@ -53,7 +52,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult(parkAreas);
 	}
 	
-	@RequestMapping(value = "/search/area", method = RequestMethod.POST)
+	@RequestMapping(value = "/search/area")
 	public @ResponseBody Object parkAreaFind(
             @RequestParam(value = "pano") Long pano) {
 		
@@ -61,7 +60,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult(parks);
 	}
 	
-	@RequestMapping(value = "/search/round/area/free", method = RequestMethod.POST)
+	@RequestMapping(value = "/search/round/area/free")
 	public @ResponseBody Object freeParkAreaFind(
 			@RequestParam(value = "lng0") Double lng0,
             @RequestParam(value = "lng1") Double lng1,
@@ -72,7 +71,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult(parkAreas);
 	}
 	
-	@RequestMapping(value = "/search/area/free", method = RequestMethod.POST)
+	@RequestMapping(value = "/search/area/free")
 	public @ResponseBody Object freeParkAreaFind(
             @RequestParam(value = "pano") Long pano) {
 		
@@ -80,7 +79,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult(parks);
 	}
 	
-	@RequestMapping(value = "/region/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/region/save")
 	public @ResponseBody Object parkAreaFind(
             @RequestParam(value = "province") String province,
             @RequestParam(value = "city") String city,
@@ -98,7 +97,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult();
 	}
 	
-	@RequestMapping(value = "/area/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/area/save")
 	public @ResponseBody Object parkAreaSave(
             @RequestParam(value = "lng") Double lng,
             @RequestParam(value = "lat") Double lat,
@@ -144,7 +143,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult();
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update")
 	public @ResponseBody Object parkUpdate(
             @RequestParam(value = "lng") Double lng,
             @RequestParam(value = "lat") Double lat,
@@ -176,7 +175,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult();
 	}
 	
-	@RequestMapping(value = "/status/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/status/update")
 	public @ResponseBody Object parkStatusUpdate(
             @RequestParam(value = "recid") String recId,
             @RequestParam(value = "devid") String devId,
@@ -191,7 +190,7 @@ public class ParkWsAction extends BaseAction{
 		return this.getResult();
 	}
 	
-	@RequestMapping(value = "/pay", method = RequestMethod.POST)
+	@RequestMapping(value = "/pay")
 	public @ResponseBody Object parkPay(
             @RequestParam(value = "pno") Long pno,
             @RequestParam(value = "stime") Long sTime,
