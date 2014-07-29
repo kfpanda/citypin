@@ -29,7 +29,7 @@ public class MyUserDetailService implements UserDetailsService  {
 	private RoleMapper roleMapper;
 //	@Autowired
 //	private PubAuthoritiesResourcesDao pubAuthoritiesResourcesDao;
-	 
+	
 	@Override
 	public UserDetails loadUserByUsername(String account)
 			throws UsernameNotFoundException, DataAccessException {

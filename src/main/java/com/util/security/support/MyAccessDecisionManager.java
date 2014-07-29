@@ -41,10 +41,12 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         while(ite.hasNext()){
             ConfigAttribute ca = ite.next();
             String needRole=((SecurityConfig)ca).getAttribute();
-            for(GrantedAuthority ga:authentication.getAuthorities()){
-                if(needRole.equals(ga.getAuthority())){  //ga is user's role.
-                    return;
-                }
+            if(authentication.getAuthorities() != null){
+	            for(GrantedAuthority ga:authentication.getAuthorities()){
+	                if(needRole.equals(ga.getAuthority())){  //ga is user's role.
+	                    return;
+	                }
+	            }
             }
         }
         throw new AccessDeniedException("user no right");
