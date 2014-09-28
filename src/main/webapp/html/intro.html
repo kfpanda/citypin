@@ -41,18 +41,22 @@
 		<span class="field_span">phone:</span><input type="text" name="phone" value=""/>
 		<span class="field_span">nkname:</span><input type="text" name="nkname" value=""/><br />
 		<span class="field_span">uname:</span><input type="text" name="uname" value=""/>
+		<span class="field_span">hpic:</span><input type="text" name="hpic" value="/img/me.png"/><br />
+		<span class="field_span">yt:</span><input type="text" name="yt" value="1"/>
 		<span class="field_span">level:</span><input type="text" name="level" value="1"/><br />
 		<span class="field_span">levscore:</span><input type="text" name="levscore" value="0"/>
 		<span class="field_span">score:</span><input type="text" name="score" value="0"/><br />
 		<span class="field_span">status:</span><input type="text" name="status" value="1"/>
 		<span class="field_span">address:</span><input type="text" name="address" value=""/><br />
-		<span class="field_span">vehtype:</span><input type="text" name="vehtype" value=""/>
+		<span class="field_span">location:</span><input type="text" name="location" value="杭州市-西湖区"/>
+		<span class="field_span">vehtype:</span><input type="text" name="vehtype" value=""/><br />
 		<span class="field_span">remark:</span><input type="text" name="remark" value=""/><br />
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
 	<div><h3>1.4用户个人信息查询（POST请求）</h3></div>
 	<form action="/citypin/rs/user/info" method="post">
+		<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/><br />
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 	
@@ -233,6 +237,74 @@
 		<span class="field_span">lng1:</span><input type="text" name="lng1" value="121.0"/><br />
 		<span class="field_span">lat0:</span><input type="text" name="lat0" value="30.0"/>
 		<span class="field_span">lat1:</span><input type="text" name="lat1" value="31.0"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h2>7 喇叭相关接口</h2></div>
+	<div><h3>7.1喇叭信息发布接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/laba/pub" method="post">
+	<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/>
+	<span class="field_span">createtime:</span><input type="text" name="createtime" value=""/><br />
+	<span class="field_span">updatetime:</span><input type="text" name="updatetime" value=""/>
+	<span class="field_span">type:</span><input type="text" name="type" value="1"/><br />
+	<span class="field_span">jyou:</span><input type="text" name="jyou" value="0"/>
+	<span class="field_span">jgtime:</span><input type="text" name="jgtime" value=""/><br />
+	<span class="field_span">dccase:</span><input type="text" name="dccase" value=""/>
+	<span class="field_span">tttime:</span><input type="text" name="tttime" value="1800"/><br />
+	<span class="field_span">location:</span><input type="text" name="location" value="杭州市-西湖区"/>
+	<span class="field_span">tag:</span><input type="text" name="tag" value=""/><br />
+	<span class="field_span">img:</span><input type="text" name="img" value="/img/source/test.png"/>
+	<span class="field_span">huati:</span><input type="text" name="huati" value="女司机,事故"/><br />
+	<span class="field_span">lng:</span><input type="text" name="lng" value="120.107453"/>
+	<span class="field_span">lat:</span><input type="text" name="lat" value="30.299377"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>7.2喇叭信息查询接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/laba/find/round" method="get">
+		<!-- <span class="field_span">lng0:</span><input type="text" name="lng0" value="120.0"/>
+		<span class="field_span">lng1:</span><input type="text" name="lng1" value="121.0"/><br />
+		<span class="field_span">lat0:</span><input type="text" name="lat0" value="30.0"/>
+		<span class="field_span">lat1:</span><input type="text" name="lat1" value="31.0"/><br /> -->
+		<span class="field_span">location:</span><input type="text" name="location" value="西湖区"/>
+		<span class="field_span">starttime:</span><input type="text" name="starttime" value="20140901"/><br />
+		<span class="field_span">endtime:</span><input type="text" name="endtime" value=""/>
+		<span class="field_span">page.page:</span><input type="text" name="page.page" value="1"/><br />
+		<span class="field_span">page.size:</span><input type="text" name="page.size" value="10"/>
+		<span class="field_span">page.sort:</span><input type="text" name="page.sort" value="createTime"/><br />
+		<span class="field_span">page.sort.dir:</span><input type="text" name="page.sort.dir" value="desc"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>7.3用户喇叭信息查询接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/laba/find" method="get">
+		<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/>
+		<span class="field_span">page.page:</span><input type="text" name="page.page" value="1"/><br />
+		<span class="field_span">page.size:</span><input type="text" name="page.size" value="10"/>
+		<span class="field_span">page.sort:</span><input type="text" name="page.sort" value="createTime"/><br />
+		<span class="field_span">page.sort.dir:</span><input type="text" name="page.sort.dir" value="desc"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>7.4用户油桶统计接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/laba/yt/count" method="get">
+		<span class="field_span">lbid:</span><input type="text" name="lbid" value="1"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>7.5油桶+1接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/laba/yt/1" method="get">
+		<span class="field_span">lbid:</span><input type="text" name="lbid" value="1"/><br />
+		<input class="sub_btn" type="submit" value="提交" />
+	</form>
+	
+	<div><h3>7.6喇叭评论接口（GET POST请求）</h3></div>
+	<form action="/citypin/rs/laba/comment" method="get">
+		<span class="field_span">lbid:</span><input type="text" name="lbid" value="1"/>
+		<span class="field_span">account:</span><input type="text" name="account" value="15158881212"/><br />
+		<span class="field_span">content:</span><input type="text" name="content" value="很好很强大"/>
+		<span class="field_span">lng:</span><input type="text" name="lng" value="120.0"/><br />
+		<span class="field_span">lat:</span><input type="text" name="lat" value="30.0"/><br />
 		<input class="sub_btn" type="submit" value="提交" />
 	</form>
 </div>

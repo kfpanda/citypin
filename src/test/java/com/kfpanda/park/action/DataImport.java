@@ -117,7 +117,7 @@ public class DataImport {
 					]
 				}
 			 */
-			System.out.println(new String(buff.array()));
+			System.out.println("x:" + parkArea.getLng() + "-y:"+parkArea.getLat() + new String(buff.array()));
 			Map<String, Object> result = JsonUtils.getInstance().readValue(buff.array(), Map.class);
 			List<Map<String,Object>> posList = (List<Map<String, Object>>) result.get("result");
 			if(posList != null && posList.size() > 0){
@@ -125,7 +125,8 @@ public class DataImport {
 				parkArea.setLng((Double)map.get("x"));
 				parkArea.setLat((Double)map.get("y"));
 			}else{
-				System.out.println("WARN: geoConv fail. ID(" + parkArea.getPano() + ")");
+				System.out.println("WARN: geoConv fail. ID(" + parkArea.getPano() 
+						+ "," + parkArea.getLng() + "," + parkArea.getLat() + ")");
 			}
 //		} catch (JsonParseException e) {
 //			e.printStackTrace();

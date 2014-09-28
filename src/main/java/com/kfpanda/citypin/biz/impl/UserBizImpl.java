@@ -27,12 +27,16 @@ public class UserBizImpl implements UserBiz{
 	}
 	
 	public int saveUser(Users user){
-		//密码加密
-		user.setPasswd(encoder.encodePassword(user.getPasswd(), user.getAccount()));
-		int rlt = userMapper.saveUser(user);
-		//建立用户角色关系
-		roleMapper.saveUserRole(user.getAccount(), new Long(1));
-		
+		int rlt = -1;
+		try{
+			//密码加密
+			user.setPasswd(encoder.encodePassword(user.getPasswd(), user.getAccount()));
+			rlt = userMapper.saveUser(user);
+			//建立用户角色关系
+			roleMapper.saveUserRole(user.getAccount(), new Long(1));
+		}catch(Exception ex){
+			logger.error("用户入库失败：", ex);
+		}
 		return rlt;
 	}
 }

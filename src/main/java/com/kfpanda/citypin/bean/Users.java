@@ -12,10 +12,13 @@ public class Users implements Serializable{
     private String phone;
     private String nkName;
     private String uName;
+    private String hPic;
+    private int yt;
     private Integer level;
     private Integer levScore;
     private Integer score;
     private Integer status;
+    private String location;
     private String address;
     private String vehType;
     private String remark;
@@ -62,6 +65,18 @@ public class Users implements Serializable{
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
+	public String gethPic() {
+		return hPic;
+	}
+	public void sethPic(String hPic) {
+		this.hPic = hPic;
+	}
+	public int getYt() {
+		return yt;
+	}
+	public void setYt(int yt) {
+		this.yt = yt;
+	}
 	public Integer getLevel() {
 		return level;
 	}
@@ -85,6 +100,12 @@ public class Users implements Serializable{
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	public String getAddress() {
 		return address;

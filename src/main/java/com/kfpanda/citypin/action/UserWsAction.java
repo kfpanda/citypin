@@ -28,10 +28,13 @@ public class UserWsAction extends BaseAction{
             @RequestParam(value = "phone") String phone,
             @RequestParam(value = "nkname", required=false) String nkName,
             @RequestParam(value = "uname", required=false) String uName,
+            @RequestParam(value = "hpic", required=false) String hPic,
+            @RequestParam(value = "yt", defaultValue="1") Integer yt,
             @RequestParam(value = "level", defaultValue="1") Integer level,
             @RequestParam(value = "levscore", defaultValue="0") Integer levScore,
             @RequestParam(value = "score", defaultValue="0") Integer score,
             @RequestParam(value = "status", defaultValue="1") Integer status,
+            @RequestParam(value = "location", required=false) String location,
             @RequestParam(value = "address", required=false) String address,
             @RequestParam(value = "vehtype", required=false) String vehType,
             @RequestParam(value = "remark", required=false) String remark) {
@@ -48,12 +51,17 @@ public class UserWsAction extends BaseAction{
 		if(StringUtils.isBlank(nkName)){
 			nkName = account;
 		}
+		if(StringUtils.isBlank(location)){
+			return this.getResult(-1, "location isn't null or empty.");
+		}
 		Users user = new Users();
 		user.setAccount(account);
 		user.setAddress(address);
 		user.setCreateTime(System.currentTimeMillis());
 		user.setLevel(level);
 		user.setLevScore(levScore);
+		user.sethPic(hPic);
+		user.setYt(yt);
 		user.setNkName(nkName);
 		user.setPasswd(passwd);
 		user.setPhone(phone);
@@ -61,16 +69,21 @@ public class UserWsAction extends BaseAction{
 		user.setScore(score);
 		user.setStatus(status);
 		user.setuName(uName);
+		user.setLocation(location);
 		user.setUpdateTime(System.currentTimeMillis());
 		user.setVehType(vehType);
 		
-		return this.getResult(userBiz.saveUser(user));
+		int rlt = userBiz.saveUser(user);
+		if(rlt < 0){
+			return this.getResult(-1, "account is exists.");
+		}
+		return this.getResult();
 	}
 	
 	@RequestMapping(value = "/info")
-	public @ResponseBody Object parkFind() {
+	public @ResponseBody Object userFind(@RequestParam(value = "account") String account) {
 		
-		String account = getAuthAccount();
+//		String account = getAuthAccount();
 		if(StringUtils.isBlank(account)){
 			return this.getResult(-1, "user is not auth.");
 		}

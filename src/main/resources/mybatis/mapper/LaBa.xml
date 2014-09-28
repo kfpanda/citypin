@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.kfpanda.citypin.mapper.LaBaMapper">
+	<resultMap type="com.kfpanda.citypin.bean.LaBa" id="laBaResult">
+		<id column="lbid" property="lbid"/>
+		<result column="account" property="account"/>
+		<result column="createtime" property="createTime"/>
+		<result column="updatetime" property="updateTime"/>
+		<result column="dccase" property="dcCase"/>
+		<result column="huati" property="huaTi"/>
+		<result column="img" property="img"/>
+		<result column="jgtime" property="jgTime"/>
+		<result column="jyou" property="jyou"/>
+		<result column="lat" property="lat"/>
+		<result column="lng" property="lng"/>
+		<result column="location" property="location"/>
+		<result column="tag" property="tag"/>
+		<result column="tttime" property="ttTime"/>
+		<result column="type" property="type"/>
+		<collection property="comments" javaType="java.util.List" resultMap="commentResult"/>
+	</resultMap>
+	
+	<resultMap id="commentResult" type="com.kfpanda.citypin.bean.LaBaComment">
+		<id column="lcid" property="lcId"/>
+		<result column="account" property="account"/>
+		<result column="createtime" property="createTime"/>
+		<result column="updatetime" property="updateTime"/>
+		<result column="lng" property="lng"/>
+		<result column="lat" property="lat"/>
+		<result column="content" property="content"/>
+		<result column="lbid" property="lbId"/>
+	</resultMap>
+	
+</mapper>

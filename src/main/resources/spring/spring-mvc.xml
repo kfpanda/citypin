@@ -45,9 +45,9 @@
 <!-- 				<property name="supportedMediaTypes" value="application/xml;charset=UTF-8" /> -->
 <!-- 			</bean> -->
 		</mvc:message-converters>
-		<!-- <mvc:argument-resolvers>
-			<bean class="com.hexin.core.page.MultPageableArgumentResolver" />
-		</mvc:argument-resolvers> -->
+		<mvc:argument-resolvers>
+			<bean class="org.springframework.data.web.PageableArgumentResolver" />
+		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
-
+	
 </beans>

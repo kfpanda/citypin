@@ -31,6 +31,7 @@ public class UsersMapperTest {
 		usr.setPasswd(encoder.encodePassword("123456", "lhl"));
 		usr.setPhone("12345678912");
 		usr.setNkName("kfpanda");
+		usr.setLocation("杭州市-西湖区");
 		userMapper.saveUser(usr);
 		Assert.assertEquals(usr.getAccount(), "lhl");
 	}

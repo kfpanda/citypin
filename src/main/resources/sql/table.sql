@@ -37,10 +37,13 @@ create table users(
     phone varchar(11) not null,
     nkname varchar(30) not null,
     uname varchar(30),
+    hpic varchar(100),
+    yt int default 1,
     level int not null default 1,
     levscore int not null default 0,
     score int not null default 0, /*1代表发布，0代表不发布*/
     status int(1) not null default 0,
+    location varchar(40),
     address varchar(100),
     vehtype varchar(30),
     remark varchar(1000),
@@ -194,7 +197,7 @@ CREATE TABLE weizhang(
     PRIMARY KEY(wzid)
 );;
 CREATE UNIQUE INDEX tt_wzid_idx ON weizhang(wzid);
-CREATE UNIQUE INDEX tt_lng_lat_idx ON weizhang(lng,lat);
+CREATE INDEX tt_lng_lat_idx ON weizhang(lng,lat);
 
 /*贴条记录表*/
 DROP TABLE IF EXISTS tietiao;
@@ -214,3 +217,47 @@ CREATE TABLE tietiao(
 );;
 CREATE UNIQUE INDEX tt_ttid_idx ON tietiao(ttid);
 CREATE INDEX tt_lng_lat_idx ON tietiao(lng,lat);
+
+/*吐槽记录表*/
+DROP TABLE IF EXISTS laba;
+
+CREATE TABLE laba(
+    lbid BIGINT AUTO_INCREMENT,
+    createtime DECIMAL(13,0),
+    updatetime DECIMAL(13,0),
+    type DECIMAL(1,0) not null,
+    jyou DECIMAL(2,0) NOT NULL,
+    jgtime DECIMAL(8,0),
+    dccase varchar(100),
+    tttime DECIMAL(13,0),
+    location varchar(40) not null,
+    tag varchar(20),
+    img varchar(100),
+    huati varchar(100),
+    lng DECIMAL(10,6),
+    lat DECIMAL(10,6),
+    account varchar(32) not null,
+    PRIMARY KEY(lbid)
+);;
+CREATE UNIQUE INDEX lb_lbid_idx ON laba(lbid);
+CREATE INDEX lb_lng_lat_idx ON laba(lng,lat);
+CREATE INDEX lb_account_idx ON laba(account);
+
+
+/*吐槽记录表*/
+DROP TABLE IF EXISTS labacomment;
+
+CREATE TABLE labacomment(
+	lcid BIGINT AUTO_INCREMENT,
+    lbid BIGINT not null,
+    account varchar(32) not null,
+    createtime DECIMAL(13,0),
+    updatetime DECIMAL(13,0),
+    content varchar(1000),
+    lng DECIMAL(10,6),
+    lat DECIMAL(10,6),
+    PRIMARY KEY(lcid)
+);;
+CREATE UNIQUE INDEX lc_lcid_idx ON labacomment(lcid);
+CREATE INDEX lc_lng_lat_idx ON labacomment(lng,lat);
+CREATE INDEX lc_lbid_account_idx ON labacomment(lbid,account);
