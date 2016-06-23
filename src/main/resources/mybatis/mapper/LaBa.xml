@@ -4,33 +4,36 @@
 
 <mapper namespace="com.kfpanda.citypin.mapper.LaBaMapper">
 	<resultMap type="com.kfpanda.citypin.bean.LaBa" id="laBaResult">
-		<id column="lbid" property="lbid"/>
-		<result column="account" property="account"/>
-		<result column="createtime" property="createTime"/>
-		<result column="updatetime" property="updateTime"/>
-		<result column="dccase" property="dcCase"/>
-		<result column="huati" property="huaTi"/>
-		<result column="img" property="img"/>
-		<result column="jgtime" property="jgTime"/>
-		<result column="jyou" property="jyou"/>
-		<result column="lat" property="lat"/>
-		<result column="lng" property="lng"/>
-		<result column="location" property="location"/>
-		<result column="tag" property="tag"/>
-		<result column="tttime" property="ttTime"/>
-		<result column="type" property="type"/>
+		<id column="lb_lbid" property="lbid"/>
+		<result column="lb_account" property="account"/>
+		<result column="lb_createtime" property="createTime"/>
+		<result column="lb_updatetime" property="updateTime"/>
+		<result column="lb_dccase" property="dcCase"/>
+		<result column="lb_huati" property="huaTi"/>
+		<result column="lb_img" property="img"/>
+		<result column="lb_jgtime" property="jgTime"/>
+		<result column="lb_jyou" property="jyou"/>
+		<result column="lb_lat" property="lat"/>
+		<result column="lb_lng" property="lng"/>
+		<result column="lb_location" property="location"/>
+		<result column="lb_tag" property="tag"/>
+		<result column="lb_tttime" property="ttTime"/>
+		<result column="lb_type" property="type"/>
+		<result column="lb_hpic" property="hpic"/>
+		<result column="lb_nkname" property="nkName"/>
 		<collection property="comments" javaType="java.util.List" resultMap="commentResult"/>
 	</resultMap>
 	
 	<resultMap id="commentResult" type="com.kfpanda.citypin.bean.LaBaComment">
 		<id column="lcid" property="lcId"/>
-		<result column="account" property="account"/>
-		<result column="createtime" property="createTime"/>
-		<result column="updatetime" property="updateTime"/>
-		<result column="lng" property="lng"/>
-		<result column="lat" property="lat"/>
-		<result column="content" property="content"/>
-		<result column="lbid" property="lbId"/>
+		<result column="lc_account" property="account"/>
+		<result column="lc_createtime" property="createTime"/>
+		<result column="lc_updatetime" property="updateTime"/>
+		<result column="lc_lng" property="lng"/>
+		<result column="lc_lat" property="lat"/>
+		<result column="lc_content" property="content"/>
+		<result column="lc_lbid" property="lbId"/>
+		<result column="lc_hpic" property="hpic"/>
 	</resultMap>
 	
 </mapper>

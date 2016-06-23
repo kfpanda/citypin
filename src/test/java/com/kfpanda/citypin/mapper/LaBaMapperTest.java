@@ -1,6 +1,7 @@
 package com.kfpanda.citypin.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -44,5 +45,11 @@ public class LaBaMapperTest {
 		Pageable pageable = new PageRequest(0, 10);
 		List<LaBa> laBaList = laBaMapper.findLaBaByLocation("杭州", Long.parseLong("1409529600000"), Long.parseLong("1419529600000"), pageable, "createtime desc");
 		Assert.assertEquals(laBaList.get(0).getAccount(), "lhl");
+	}
+	
+	@Test
+	public void laBaStat(){
+		Map<String, Integer> result = laBaMapper.laBaStat("15158881212");
+		Assert.assertEquals(result.get("labacount"), "lhl");
 	}
 }

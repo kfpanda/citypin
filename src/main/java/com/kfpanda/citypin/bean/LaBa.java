@@ -20,6 +20,8 @@ public class LaBa implements Serializable{
 	private Double lng;
 	private Double lat;
 	private String account;
+	private String hpic;
+	private String nkName;
 	private List<LaBaComment> comments;
 	
 	public Long getLbid() {
@@ -111,6 +113,18 @@ public class LaBa implements Serializable{
 	}
 	public void setAccount(String account) {
 		this.account = account;
+	}
+	public String getHpic() {
+		return hpic;
+	}
+	public void setHpic(String hpic) {
+		this.hpic = hpic;
+	}
+	public String getNkName() {
+		return nkName;
+	}
+	public void setNkName(String nkName) {
+		this.nkName = nkName;
 	}
 	public List<LaBaComment> getComments() {
 		return comments;

@@ -142,11 +142,21 @@ public class LaBaAction extends BaseAction{
 	}
 	
 	@RequestMapping(value = "/yt/1")
-	public @ResponseBody Object nuQiAdd(@RequestParam(value = "lbid") Long lbid) {
+	public @ResponseBody Object nuQiAdd(@RequestParam(value = "account") String account,
+			@RequestParam(value = "lbid") Long lbid) {
+		if(StringUtils.isBlank(account)){
+			return this.getResult(-1, "account is not null or empty.");
+		}
 		if(lbid < 1){
 			return this.getResult(-1, "lbid is not null or empty.");
 		}
-		laBaBiz.ytAdd(lbid);
+		LaBaComment comment = new LaBaComment();
+		comment.setAccount(account);
+		comment.setCreateTime(System.currentTimeMillis());
+		comment.setUpdateTime(System.currentTimeMillis());
+		comment.setLbId(lbid);
+		comment.setContent("0");
+		laBaBiz.ytAdd(lbid, comment);
 		return this.getResult();
 	}
 	
@@ -172,5 +182,21 @@ public class LaBaAction extends BaseAction{
 		comment.setUpdateTime(System.currentTimeMillis());
 		laBaBiz.laBaComment(comment);
 		return this.getResult();
+	}
+	
+	@RequestMapping(value = "/comment/find")
+	public @ResponseBody Object commentFind(@RequestParam(value = "lbid") Long lbid) {
+		if(lbid < 1){
+			return this.getResult(-1, "lbid is not null or empty.");
+		}
+		return this.getResult(laBaBiz.laBaCommentFind(lbid));
+	}
+	
+	@RequestMapping(value = "/stat")
+	public @ResponseBody Object stat(@RequestParam(value = "account") String account) {
+		if(StringUtils.isBlank(account)){
+			return this.getResult(-1, "account is not null or empty.");
+		}
+		return this.getResult(laBaBiz.laBaStat(account));
 	}
 }

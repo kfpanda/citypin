@@ -7,6 +7,8 @@ public class LaBaComment implements Serializable{
 	private Long lcId;
 	private Long lbId;
 	private String account;
+	private String hpic;
+	private String nkName;
 	private Long createTime;
 	private Long updateTime;
 	private String content;
@@ -30,6 +32,12 @@ public class LaBaComment implements Serializable{
 	}
 	public void setAccount(String account) {
 		this.account = account;
+	}
+	public String getHpic() {
+		return hpic;
+	}
+	public void setHpic(String hpic) {
+		this.hpic = hpic;
 	}
 	public Long getCreateTime() {
 		return createTime;
@@ -60,5 +68,11 @@ public class LaBaComment implements Serializable{
 	}
 	public void setLat(Double lat) {
 		this.lat = lat;
+	}
+	public String getNkName() {
+		return nkName;
+	}
+	public void setNkName(String nkName) {
+		this.nkName = nkName;
 	}
 }

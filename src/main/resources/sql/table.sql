@@ -1,3 +1,8 @@
+create database park;
+
+use park;;
+
+
 drop table if exists park_info;
 /*车位信息表*/
 create table park_info(
@@ -242,6 +247,7 @@ CREATE TABLE laba(
 CREATE UNIQUE INDEX lb_lbid_idx ON laba(lbid);
 CREATE INDEX lb_lng_lat_idx ON laba(lng,lat);
 CREATE INDEX lb_account_idx ON laba(account);
+CREATE INDEX laba_createtime_idx ON laba(createtime);
 
 
 /*吐槽记录表*/
@@ -261,3 +267,13 @@ CREATE TABLE labacomment(
 CREATE UNIQUE INDEX lc_lcid_idx ON labacomment(lcid);
 CREATE INDEX lc_lng_lat_idx ON labacomment(lng,lat);
 CREATE INDEX lc_lbid_account_idx ON labacomment(lbid,account);
+
+
+CREATE TABLE jianyi(
+	jyid BIGINT AUTO_INCREMENT,
+    account varchar(32) not null,
+    createtime DECIMAL(13,0),
+    content varchar(1000),
+    PRIMARY KEY(jyid)
+);;
+CREATE UNIQUE INDEX jy_jyid_idx ON jianyi(jyid);

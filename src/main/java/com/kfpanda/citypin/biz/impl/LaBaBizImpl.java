@@ -1,6 +1,7 @@
 package com.kfpanda.citypin.biz.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -44,8 +45,9 @@ public class LaBaBizImpl implements LaBaBiz{
 	}
 
 	@Override
-	public void ytAdd(Long lbid) {
+	public void ytAdd(Long lbid, LaBaComment comment) {
 		laBaMapper.ytAdd(lbid);
+		laBaMapper.saveLaBaComment(comment);
 	}
 	
 	@Override
@@ -55,7 +57,17 @@ public class LaBaBizImpl implements LaBaBiz{
 
 	@Override
 	public int laBaComment(LaBaComment comment) {
-		return laBaMapper.laBaComment(comment);
+		return laBaMapper.saveLaBaComment(comment);
+	}
+
+	@Override
+	public Map<String, Integer> laBaStat(String account) {
+		return laBaMapper.laBaStat(account);
+	}
+
+	@Override
+	public List<LaBaComment> laBaCommentFind(Long lbId) {
+		return laBaMapper.laBaCommentFind(lbId);
 	}
 
 }

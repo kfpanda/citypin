@@ -2,6 +2,7 @@ package com.kfpanda.citypin.biz.impl;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -38,5 +39,36 @@ public class UserBizImpl implements UserBiz{
 			logger.error("用户入库失败：", ex);
 		}
 		return rlt;
+	}
+
+	@Override
+	public int updateUser(Users user) {
+		if(StringUtils.isNotBlank(user.getPasswd())){
+			userMapper.updateUserPsd(user.getAccount(), encoder.encodePassword(user.getPasswd(), user.getAccount()));
+		}
+		return userMapper.updateUsers(user);
+	}
+	
+	@Override
+	public int updateUserPasswd(String account, String passwd, String newPasswd) {
+		Users user = userMapper.findUser(account);
+		if(user != null && user.getPasswd().equals(encoder.encodePassword(passwd, account))){
+			return userMapper.updateUserPsd(account, encoder.encodePassword(newPasswd, account));
+		}
+		return -1;
+	}
+	
+	public static void main(String[] args) {
+		String test = encoder.encodePassword("123456", "13065725857");
+		System.out.println(test);
+	}
+
+	@Override
+	public int passwdValid(String account, String passwd) {
+		Users user = userMapper.findUser(account);
+		if(user != null && user.getPasswd().equals(encoder.encodePassword(passwd, account))){
+			return 1;
+		}
+		return -1;
 	}
 }
